@@ -8,6 +8,8 @@
 import UIKit
 import Swinject
 
+//courtsey: Swinject: Effortless Dependency Injection in iOS by iOS Academy (https://www.youtube.com/watch?v=9rT5TksdJ-8)
+
 class ViewController: UIViewController {
 
     let container: Container = {
@@ -16,6 +18,7 @@ class ViewController: UIViewController {
             return ColorProviding()
         }
         container.register(SecondViewController.self) { resolver in
+            // this block is called only when container is trying to resolve not before that
             let vc = SecondViewController(provider: resolver.resolve(ColorProvider.self))
             return vc
         }
