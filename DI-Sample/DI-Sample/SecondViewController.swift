@@ -9,9 +9,9 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
-    private let provider: ColorProvider
+    private let provider: ColorProvider?
     
-    init(provider: ColorProvider) {
+    init(provider: ColorProvider?) {
         self.provider = provider
         super.init(nibName: nil, bundle: nil)
     }
@@ -22,7 +22,7 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = provider.color
+        view.backgroundColor = provider?.color ?? .green
         // Do any additional setup after loading the view.
     }
     

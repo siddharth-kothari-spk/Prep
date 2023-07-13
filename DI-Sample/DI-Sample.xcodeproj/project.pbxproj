@@ -20,6 +20,7 @@
 		B13873862A6007B9002820A6 /* DI_SampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13873852A6007B9002820A6 /* DI_SampleUITestsLaunchTests.swift */; };
 		B17AFC2D2A600B0C00D0B96E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17AFC2C2A600B0C00D0B96E /* SecondViewController.swift */; };
 		B17AFC302A600B3300D0B96E /* ColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17AFC2F2A600B3300D0B96E /* ColorProvider.swift */; };
+		B17AFC322A600CB700D0B96E /* ColorProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17AFC312A600CB700D0B96E /* ColorProviding.swift */; };
 		EE2E40EE6C2FC585CE3F3E2F /* Pods_DI_SampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A6F3AE9B229E2A2D876743B /* Pods_DI_SampleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		B13873852A6007B9002820A6 /* DI_SampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DI_SampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B17AFC2C2A600B0C00D0B96E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		B17AFC2F2A600B3300D0B96E /* ColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProvider.swift; sourceTree = "<group>"; };
+		B17AFC312A600CB700D0B96E /* ColorProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProviding.swift; sourceTree = "<group>"; };
 		CC2F84F3B9046135DCC686C1 /* Pods-DI-SampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DI-SampleTests.debug.xcconfig"; path = "Target Support Files/Pods-DI-SampleTests/Pods-DI-SampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +150,7 @@
 				B13873642A6007B8002820A6 /* SceneDelegate.swift */,
 				B13873662A6007B8002820A6 /* ViewController.swift */,
 				B17AFC2C2A600B0C00D0B96E /* SecondViewController.swift */,
+				B17AFC312A600CB700D0B96E /* ColorProviding.swift */,
 				B13873682A6007B8002820A6 /* Main.storyboard */,
 				B138736B2A6007B9002820A6 /* Assets.xcassets */,
 				B138736D2A6007B9002820A6 /* LaunchScreen.storyboard */,
@@ -424,6 +427,7 @@
 				B17AFC302A600B3300D0B96E /* ColorProvider.swift in Sources */,
 				B13873672A6007B8002820A6 /* ViewController.swift in Sources */,
 				B13873632A6007B8002820A6 /* AppDelegate.swift in Sources */,
+				B17AFC322A600CB700D0B96E /* ColorProviding.swift in Sources */,
 				B13873652A6007B8002820A6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
