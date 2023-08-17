@@ -16,6 +16,8 @@
 		B1E98D262A8E48910041FB5B /* ResearchKit_SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E98D252A8E48910041FB5B /* ResearchKit_SampleTests.swift */; };
 		B1E98D302A8E48910041FB5B /* ResearchKit_SampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E98D2F2A8E48910041FB5B /* ResearchKit_SampleUITests.swift */; };
 		B1E98D322A8E48910041FB5B /* ResearchKit_SampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E98D312A8E48910041FB5B /* ResearchKit_SampleUITestsLaunchTests.swift */; };
+		B1E98D492A8E49EC0041FB5B /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E98D452A8E498F0041FB5B /* ResearchKit.framework */; };
+		B1E98D4A2A8E49EC0041FB5B /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1E98D452A8E498F0041FB5B /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +35,35 @@
 			remoteGlobalIDString = B1E98D0A2A8E488F0041FB5B;
 			remoteInfo = "ResearchKit Sample";
 		};
+		B1E98D442A8E498F0041FB5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1E98D3E2A8E498E0041FB5B /* ResearchKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B183A5951A8535D100C76870;
+			remoteInfo = ResearchKit;
+		};
+		B1E98D462A8E498F0041FB5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B1E98D3E2A8E498E0041FB5B /* ResearchKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 86CC8E9A1AC09332001CCD89;
+			remoteInfo = ResearchKitTests;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B1E98D4B2A8E49ED0041FB5B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B1E98D4A2A8E49EC0041FB5B /* ResearchKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B1E98D0B2A8E488F0041FB5B /* ResearchKit Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ResearchKit Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +79,7 @@
 		B1E98D2B2A8E48910041FB5B /* ResearchKit SampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ResearchKit SampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1E98D2F2A8E48910041FB5B /* ResearchKit_SampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchKit_SampleUITests.swift; sourceTree = "<group>"; };
 		B1E98D312A8E48910041FB5B /* ResearchKit_SampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchKit_SampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B1E98D3E2A8E498E0041FB5B /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "../../../ResearchKit-stable/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1E98D492A8E49EC0041FB5B /* ResearchKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +111,12 @@
 		B1E98D022A8E488F0041FB5B = {
 			isa = PBXGroup;
 			children = (
+				B1E98D3E2A8E498E0041FB5B /* ResearchKit.xcodeproj */,
 				B1E98D0D2A8E488F0041FB5B /* ResearchKit Sample */,
 				B1E98D242A8E48910041FB5B /* ResearchKit SampleTests */,
 				B1E98D2E2A8E48910041FB5B /* ResearchKit SampleUITests */,
 				B1E98D0C2A8E488F0041FB5B /* Products */,
+				B1E98D482A8E49EC0041FB5B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +161,22 @@
 			path = "ResearchKit SampleUITests";
 			sourceTree = "<group>";
 		};
+		B1E98D3F2A8E498E0041FB5B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1E98D452A8E498F0041FB5B /* ResearchKit.framework */,
+				B1E98D472A8E498F0041FB5B /* ResearchKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B1E98D482A8E49EC0041FB5B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,6 +187,7 @@
 				B1E98D072A8E488F0041FB5B /* Sources */,
 				B1E98D082A8E488F0041FB5B /* Frameworks */,
 				B1E98D092A8E488F0041FB5B /* Resources */,
+				B1E98D4B2A8E49ED0041FB5B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -217,6 +268,12 @@
 			mainGroup = B1E98D022A8E488F0041FB5B;
 			productRefGroup = B1E98D0C2A8E488F0041FB5B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B1E98D3F2A8E498E0041FB5B /* Products */;
+					ProjectRef = B1E98D3E2A8E498E0041FB5B /* ResearchKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B1E98D0A2A8E488F0041FB5B /* ResearchKit Sample */,
@@ -225,6 +282,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B1E98D452A8E498F0041FB5B /* ResearchKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchKit.framework;
+			remoteRef = B1E98D442A8E498F0041FB5B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B1E98D472A8E498F0041FB5B /* ResearchKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResearchKitTests.xctest;
+			remoteRef = B1E98D462A8E498F0041FB5B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B1E98D092A8E488F0041FB5B /* Resources */ = {
