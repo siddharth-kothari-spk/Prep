@@ -38,4 +38,19 @@ final class DI_SampleUITests: XCTestCase {
             }
         }
     }
+    
+    func testUI() {
+        
+        let element2 = XCUIApplication().windows.children(matching: .other).element
+        let element = element2.children(matching: .other).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        element.swipeDown()
+        element/*@START_MENU_TOKEN@*/.swipeRight()/*[[".swipeDown()",".swipeRight()"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        element.swipeLeft()
+        element.tap()
+        element.swipeRight()
+        element/*@START_MENU_TOKEN@*/.swipeRight()/*[[".swipeDown()",".swipeRight()"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        element2.children(matching: .other).element(boundBy: 0).tap()
+        element.swipeDown()
+                                
+    }
 }

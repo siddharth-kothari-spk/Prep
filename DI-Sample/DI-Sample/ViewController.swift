@@ -11,7 +11,8 @@ import Swinject
 //courtsey: Swinject: Effortless Dependency Injection in iOS by iOS Academy (https://www.youtube.com/watch?v=9rT5TksdJ-8)
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var tapButton: UIButton!
+    
     let container: Container = {
         let container = Container()
         container.register(ColorProvider.self) { _ in
@@ -27,6 +28,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tapButton.accessibilityIdentifier = "tapButton"
         // Do any additional setup after loading the view.
     }
     

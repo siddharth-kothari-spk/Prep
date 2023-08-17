@@ -34,6 +34,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZD0-XT-mFY" secondAttribute="trailing" constant="203" id="tMH-IK-5Qx"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tapButton" destination="ZD0-XT-mFY" id="nEt-84-cUi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
