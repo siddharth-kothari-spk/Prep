@@ -61,6 +61,7 @@ func convert(_ s: String, _ numRows: Int) -> String {
         if numRows < 2 { return s }
         
         var zRows = [String](repeating: String(), count: min(s.count, numRows))
+
         var cursorRow = 0
         var nextLine = false
         
