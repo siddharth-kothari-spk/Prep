@@ -9,7 +9,7 @@ class A {
 }
  
 class B {
-    var aVar: A?
+    weak var aVar: A?
     init(aVar: A? = nil) {
         print("Class B init called")
     }
