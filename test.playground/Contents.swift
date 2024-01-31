@@ -117,9 +117,10 @@ print(findSquares(-10,20))
 /*
  //Name,Age,Address,Phone Number,Email,Favorite Number,Employed
  */
-/*
+
 import Foundation
  let csvfile = """
+ Name,Age,Address,Phone Number,Email,Favorite Number,Employed
  Burgess Greasley,33,04 Ridge Oak Street,649-893-5297,bgreasley1@4shared.com,337,true
  Derwin Brunel,13,0843 Bunting Hill,790-611-6437,dbrunel2@discovery.com,961,true
  Sheffie Spadotto,55,5298 Grover Court,265-791-1163,sspadotto3@salon.com,479,true
@@ -167,7 +168,7 @@ print(people)
 print("-------")
 print(filterPeople)
 
-*/
+
 /*
  1. positive test sample: all proper data set -> Burgess Greasley,33,04 Ridge Oak Street,649-893-5297,bgreasley1@4shared.com,337,true
  2. data set with empty : Burgess Greasley, ,04 Ridge Oak Street,649-893-5297,bgreasley1@4shared.com,337,true
