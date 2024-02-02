@@ -81,3 +81,64 @@ class Solution {
 
 let solution = Solution()
 print(solution.insert([[1,2],[3,5],[6,7],[8,10],[12,16]], [4,8]))
+
+
+
+// Solution: https://leetcode.com/problems/insert-interval/solutions/3056622/swift-functional-style
+/*
+ breakdown of the algorithm:
+
+     Base Case Check:
+         If intervals is empty, return an array containing only the newInterval.
+
+     Reduce and Enumerate:
+         Use the reduce function along with enumerated to iterate through each element (tuple) of the intervals array.
+         Initialize the accumulator (data) with two properties: result (array of merged intervals) and newInt (the new interval to be merged).
+
+     Check Intersection:
+         For each tuple in intervals, check if the current interval intersects with the newInt.
+         If there is an intersection, merge the intervals by updating newInt to contain the minimum start and maximum end.
+
+     Process Non-intersecting Intervals:
+         If the current interval does not intersect with newInt, check if it comes after newInt. If so, add newInt to the result if it is not the initial value (-1).
+         Append the current interval to the result.
+
+     Final Check and Result:
+         After processing all intervals, if newInt is not the initial value (-1), add it to the result.
+         Return the final result.
+ */
+class Solution2 {
+    func insert(_ intervals: [[Int]], _ newInterval: [Int]) -> [[Int]] {
+        intervals.isEmpty ?
+            [newInterval]
+        :
+        intervals.enumerated().reduce(into: (
+            result: [[Int]](),
+            newInt: newInterval
+        )) { data, tuple in
+            let (start, end) = (0, 1)
+            let (i, interval) = tuple
+            if (interval[end] >= data.newInt[start] && interval[start] <= data.newInt[end]) {
+               // new interval intersects current interval
+                data.newInt = [
+                        min(data.newInt[start], interval[start]),
+                        max(data.newInt[end], interval[end])
+                ]
+            } else {
+                // new interval is either before or after current interval
+                if interval[start] > data.newInt[end] && data.newInt[start] != -1 {
+                    data.result.append(data.newInt)
+                    data.newInt[start] = -1
+                }
+                data.result.append(interval)
+            }
+            if i == intervals.count - 1 && data.newInt[start] != -1 {
+                // after last interval, if haven't added new interval yet, add now.
+                data.result.append(data.newInt)
+            }
+        }.result
+    }
+}
+
+let solution2 = Solution2()
+print(solution2.insert([[1,2],[3,5],[6,7],[8,10],[12,16]], [4,8]))
