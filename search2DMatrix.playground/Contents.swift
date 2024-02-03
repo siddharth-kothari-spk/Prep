@@ -49,3 +49,34 @@ class Solution {
 let sol = Solution()
 print(sol.searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 13))
 print(sol.searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 3))
+
+// Solution2: binary search approach https://leetcode.com/problems/search-a-2d-matrix/solutions/3088083/binary-search-approach
+
+class Solution2 {
+    func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
+        guard let width = matrix.first?.count else { return false }
+        let height = matrix.count
+        var left = 0
+        var right = (height * width) - 1
+        
+        while left <= right {
+            let mid = left + (right - left) / 2
+            let heightPos = (mid / width)
+            let widthPos = mid % width
+            
+            if matrix[heightPos][widthPos] > target {
+                right = mid - 1
+            } else if matrix[heightPos][widthPos] < target {
+                left = mid + 1
+            } else {
+                return true
+            }
+        }
+
+        return false
+    }
+}
+
+let sol2 = Solution2()
+print(sol2.searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 13))
+print(sol2.searchMatrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 3))
