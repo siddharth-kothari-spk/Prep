@@ -66,5 +66,59 @@ class Solution {
     }
 }
 
-let sol = Solution()
-print(sol.canCompleteCircuit([1,2,3,4,5], [3,4,5,1,2]))
+//let sol = Solution()
+//print(sol.canCompleteCircuit([1,2,3,4,5], [3,4,5,1,2]))
+
+
+/*
+ Solution2:
+ 
+ You can solve this problem using a greedy algorithm. The idea is to start from each station and check if you can complete the circuit. You keep track of the total gas available and the total cost needed to reach the next station. If at any point during the traversal you run out of gas, you cannot complete the circuit starting from that station. Here's the algorithm:
+
+ Initialize two variables, total_gas and total_cost to keep track of the current total gas and total cost.
+ Initialize a variable start_station to keep track of the potential starting station.
+ Iterate over each station in a circular manner (using modular arithmetic to handle the circular nature of the route).
+ Increment total_gas by the gas available at the current station.
+ Increment total_cost by the cost of traveling to the next station.
+ If at any point total_gas becomes negative (indicating that you can't reach the next station), reset start_station to the next station and reset total_gas and total_cost to zero.
+ After completing the loop, if total_gas is greater than or equal to total_cost, return start_station as the starting index. Otherwise, return -1.
+ */
+
+func canCompleteCircuit(_ gas: [Int], _ cost: [Int]) -> Int {
+    var totalGas = 0
+    var totalCost = 0
+    var startStation = 0
+    
+    var currentGas = 0
+    var currentCost = 0
+    
+    for i in 0..<gas.count {
+        currentGas += gas[i]
+        currentCost += cost[i]
+        
+        totalGas += gas[i]
+        totalCost += cost[i]
+        
+        if currentGas < currentCost {
+            startStation = (i + 1) % gas.count
+            currentGas = 0
+            currentCost = 0
+        }
+    }
+    
+    if totalGas >= totalCost {
+        return startStation
+    } else {
+        return -1
+    }
+}
+
+// Example usage:
+let gas1 = [1,2,3,4,5]
+let cost1 = [3,4,5,1,2]
+print(canCompleteCircuit(gas1, cost1))  // Output: 3
+
+let gas2 = [2,3,4]
+let cost2 = [3,4,3]
+print(canCompleteCircuit(gas2, cost2))  // Output: -1
+
