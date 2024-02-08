@@ -54,11 +54,16 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.paginationData?.users.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let user = self.paginationData?.users[indexPath.row]
+        let firstName = user?.firstName ?? "first"
+        let lastName = user?.lastName ?? "last"
+        cell.textLabel?.text = "\(firstName) \(lastName)"
+        return cell
     }
     
     
