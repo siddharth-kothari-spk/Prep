@@ -49,7 +49,16 @@ class ViewController: UIViewController {
 
 
 extension ViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 100))
+        let label = UILabel(frame: footerView.bounds)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        let supportText = self.paginationData?.support.text ?? "support"
+        label.text = supportText
+        footerView.addSubview(label)
+        return footerView
+    }
 }
 
 extension ViewController: UITableViewDataSource {
