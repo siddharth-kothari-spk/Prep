@@ -13,7 +13,7 @@ class NetworkManager {
             return
         }
         
-        Task {
+       /* Task {
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 let decoder = JSONDecoder()
@@ -24,7 +24,28 @@ class NetworkManager {
                 completionHandler(.failure(error))
                 return
             }
+        }*/
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completionHandler(.failure(error))
+                return
+            }
+            
+            guard let data = data else {
+                    print("No data received")
+                    return
+            }
+            
+            do {
+                let paginationData = try JSONDecoder().decode(PaginationData.self, from: data)
+                completionHandler(.success(paginationData))
+            } catch let error {
+                completionHandler(.failure(error))
+                return
+            }
         }
+        task.resume()
         
     }
 }
