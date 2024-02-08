@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     let paginationTableView = UITableView()
+    var paginationData: PaginationData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,7 @@ class ViewController: UIViewController {
         paginationTableView.delegate = self
         paginationTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         setupConstraints()
+        fetchData()
     }
 
 
@@ -27,6 +29,21 @@ class ViewController: UIViewController {
         paginationTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         paginationTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
         paginationTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+    }
+    
+    private func fetchData() {
+        NetworkManager().fetchAPIData { result in
+            switch result {
+            case .success(let paginationData):
+                print("success, data: \(paginationData)")
+                self.paginationData = paginationData
+                DispatchQueue.main.async {
+                    self.paginationTableView.reloadData()
+                }
+            case .failure(let error):
+                print("error : \(error.localizedDescription)")
+            }
+        }
     }
 }
 

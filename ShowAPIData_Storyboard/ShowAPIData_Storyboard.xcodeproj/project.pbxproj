@@ -18,6 +18,7 @@
 		B172DD7A2B74E9E200C9811F /* ShowAPIData_StoryboardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B172DD792B74E9E200C9811F /* ShowAPIData_StoryboardUITestsLaunchTests.swift */; };
 		B172DD872B74EA5E00C9811F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B172DD862B74EA5E00C9811F /* Model.swift */; };
 		B172DD892B74EC9F00C9811F /* sample.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B172DD882B74EC9F00C9811F /* sample.rtf */; };
+		B172DD8B2B74EF9700C9811F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B172DD8A2B74EF9700C9811F /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		B172DD792B74E9E200C9811F /* ShowAPIData_StoryboardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAPIData_StoryboardUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B172DD862B74EA5E00C9811F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B172DD882B74EC9F00C9811F /* sample.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = sample.rtf; sourceTree = "<group>"; };
+		B172DD8A2B74EF9700C9811F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				B172DD582B74E9DF00C9811F /* SceneDelegate.swift */,
 				B172DD5A2B74E9DF00C9811F /* ViewController.swift */,
 				B172DD862B74EA5E00C9811F /* Model.swift */,
+				B172DD8A2B74EF9700C9811F /* NetworkManager.swift */,
 				B172DD882B74EC9F00C9811F /* sample.rtf */,
 				B172DD5C2B74E9DF00C9811F /* Main.storyboard */,
 				B172DD5F2B74E9E200C9811F /* Assets.xcassets */,
@@ -267,6 +270,7 @@
 			files = (
 				B172DD5B2B74E9DF00C9811F /* ViewController.swift in Sources */,
 				B172DD572B74E9DF00C9811F /* AppDelegate.swift in Sources */,
+				B172DD8B2B74EF9700C9811F /* NetworkManager.swift in Sources */,
 				B172DD592B74E9DF00C9811F /* SceneDelegate.swift in Sources */,
 				B172DD872B74EA5E00C9811F /* Model.swift in Sources */,
 			);
