@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "Test"
         view.addSubview(paginationTableView)
         paginationTableView.dataSource = self
         paginationTableView.delegate = self
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
 
     private func setupConstraints() {
         paginationTableView.translatesAutoresizingMaskIntoConstraints = false
-        paginationTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        paginationTableView.topAnchor.constraint(equalTo: (navigationController?.navigationBar.bottomAnchor)!).isActive = true
         paginationTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         paginationTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
         paginationTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class NetworkManager {
     func fetchAPIData(completionHandler: @escaping (Result<PaginationData, Error>) -> Void) {
@@ -13,7 +14,8 @@ class NetworkManager {
             return
         }
         
-       /* Task {
+       /*
+        Task {
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 let decoder = JSONDecoder()
@@ -24,7 +26,8 @@ class NetworkManager {
                 completionHandler(.failure(error))
                 return
             }
-        }*/
+        }
+        
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
@@ -46,6 +49,27 @@ class NetworkManager {
             }
         }
         task.resume()
+        */
         
+        var cancellables: Set<AnyCancellable> = []
+        URLSession.shared.dataTaskPublisher(for: url)
+            .map{
+                print("data: \($0.data)")
+                return $0.data
+            }
+            .decode(type: PaginationData.self, decoder: JSONDecoder())
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    completionHandler(.failure(error))
+                }
+            } receiveValue: { paginationData in
+                print(paginationData)
+                completionHandler(.success(paginationData))
+            }
+            .store(in: &cancellables)
+
     }
 }
