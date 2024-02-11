@@ -102,6 +102,78 @@ head1.next?.next?.next?.next = ListNode(9)
 let root1 = sortedListToBST(head1)
 inorderTraversal(root1)  // Output: -10 -3 0 5 9
 
-let head2: ListNode? = nil
-let root2 = sortedListToBST(head2)
-inorderTraversal(root2)  // Output:
+//let head2: ListNode? = nil
+//let root2 = sortedListToBST(head2)
+//inorderTraversal(root2)  // Output:
+
+
+
+// Solution2: https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/solutions/1928048/100-fastest-swift-solution
+
+/*
+ // Definition for singly-linked list.
+  public class ListNode {
+      public var val: Int
+      public var next: ListNode?
+      public init() { self.val = 0; self.next = nil; }
+      public init(_ val: Int) { self.val = val; self.next = nil; }
+      public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+  }
+ /
+
+ // Definition for a binary tree node.
+  public class TreeNode {
+      public var val: Int
+      public var left: TreeNode?
+      public var right: TreeNode?
+      public init() { self.val = 0; self.left = nil; self.right = nil; }
+      public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+      public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+          self.val = val
+          self.left = left
+          self.right = right
+      }
+  }
+ */
+class Solution {
+    func sortedListToBST(_ head: ListNode?) -> TreeNode? {
+        var nums: [ListNode] = []
+        var curr = head
+        
+        while curr != nil {
+            nums.append(curr!)
+            curr = curr?.next
+        }
+        
+        return sortedArrayToBST(nums)
+    }
+    
+    
+    func sortedArrayToBST(_ nums: [ListNode]) -> TreeNode? {
+        let count = nums.count
+        guard count > 0 else { return nil }
+        
+        let rootIndex = count / 2
+        let root = TreeNode(nums[rootIndex].val)
+        
+        root.left = rootIndex > 0 ? sortedArrayToBST(Array(nums[0..<rootIndex])) : nil
+        root.right = rootIndex < count - 1 ? sortedArrayToBST(Array(nums[rootIndex + 1..<count])) : nil
+        return root
+    }
+
+}
+
+let head2 = ListNode(-10)
+let head21 = ListNode(-3)
+let head22 = ListNode(0)
+let head23 = ListNode(5)
+let head24 = ListNode(9)
+
+head2.next = head21
+head21.next = head22
+head22.next = head23
+head23.next = head24
+
+
+let root2 = Solution().sortedArrayToBST([head2, head21, head22, head23, head24])
+inorderTraversal(root1)  // Output: -10 -3 0 5 9
