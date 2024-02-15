@@ -112,3 +112,51 @@ print(iterator.next()) // Output: 15
 print(iterator.hasNext()) // Output: true
 print(iterator.next()) // Output: 20
 print(iterator.hasNext()) // Output: false
+
+
+// Solution2
+
+class BSTIterator2 {
+    private var stack: [Int] = []
+    private var index = -1
+    
+    init(_ root: TreeNode?) {
+        inorder(root)
+    }
+    
+    func next() -> Int {
+        index += 1
+        return stack[index]
+    }
+    
+    func hasNext() -> Bool {
+        let i = index + 1
+        return stack.count > i
+    }
+    
+    private func inorder(_ node: TreeNode?) {
+        guard let node = node else { return }
+        inorder(node.left)
+        stack.append(node.val)
+        inorder(node.right)
+    }
+}
+
+
+let root2 = TreeNode(7)
+root2.left = TreeNode(3)
+root2.right = TreeNode(15)
+root2.right?.left = TreeNode(9)
+root2.right?.right = TreeNode(20)
+
+let iterator2 = BSTIterator2(root)
+print("#####")
+print(iterator2.next()) // Output: 3
+print(iterator2.next()) // Output: 7
+print(iterator2.hasNext()) // Output: true
+print(iterator2.next()) // Output: 9
+print(iterator2.hasNext()) // Output: true
+print(iterator2.next()) // Output: 15
+print(iterator2.hasNext()) // Output: true
+print(iterator2.next()) // Output: 20
+print(iterator2.hasNext()) // Output: false
