@@ -67,3 +67,51 @@ class Solution {
 
 let sol = Solution()
 print(sol.calculateMinimumHP([[-2,-3,3],[-5,-10,1],[10,30,-5]]))
+
+/*
+ Dry run:
+ 
+ Let's perform a dry run of the provided code with a sample dungeon:
+
+ css
+ Copy code
+ dungeon = [  [-2, -3, 3],
+   [-5, -10, 1],
+   [10, 30, -5]
+ ]
+ Initialize rows and columns variables:
+
+ rows = 3
+ columns = 3
+ Create an array dp of length columns:
+
+ dp = [0, 0, 0]
+ Initialize the last element of dp:
+
+ dp[2] = min(0, dungeon[2][2]) = min(0, -5) = -5
+ Iterate over the remaining columns of the last row of the dungeon (from right to left):
+
+ Iteration 1 (i = 1):
+ dp[1] = min(0, dp[2] + dungeon[2][1]) = min(0, -5 + 30) = min(0, 25) = 0
+ Iteration 2 (i = 0):
+ dp[0] = min(0, dp[1] + dungeon[2][0]) = min(0, 0 + 10) = min(0, 10) = 0
+ Now, dp = [0, 0, -5]
+
+ Iterate over the remaining rows of the dungeon (from bottom to top):
+
+ Iteration 1 (i = 1):
+ dp[2] = min(0, dp[2] + dungeon[1][2]) = min(0, -5 + 1) = min(0, -4) = -4
+ dp[1] = min(0, max(dp[1], dp[2]) + dungeon[1][1]) = min(0, max(0, -4) + (-10)) = min(0, -10) = -10
+ dp[0] = min(0, max(dp[0], dp[1]) + dungeon[1][0]) = min(0, max(0, -10) + (-5)) = min(0, -5) = -5
+ Now, dp = [0, -10, -4]
+
+ Iteration 2 (i = 0):
+ dp[2] = min(0, dp[2] + dungeon[0][2]) = min(0, -4 + 3) = min(0, -1) = -1
+ dp[1] = min(0, max(dp[1], dp[2]) + dungeon[0][1]) = min(0, max(-10, -1) + (-3)) = min(0, -1) = -1
+ dp[0] = min(0, max(dp[0], dp[1]) + dungeon[0][0]) = min(0, max(0, -1) + (-2)) = min(0, -1) = -1
+ Now, dp = [-1, -1, -1]
+
+ Return -dp[0] + 1 = 1
+
+ The minimum initial health required by the knight to rescue the princess in the given dungeon is 1.
+ */
