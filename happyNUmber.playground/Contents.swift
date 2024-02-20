@@ -54,3 +54,41 @@ let sol = Solution()
 print(sol.isHappy(19))
 print("-------")
 print(sol.isHappy(2))
+
+print("***********************************")
+// Solution2 : 2 pointer strategy
+class Solution2 {
+    func isHappy(_ n: Int) -> Bool {
+        func getSumOfSquares(_ num: Int) -> Int {
+            var sum = 0
+            var number = num
+            
+            while number > 0 {
+                let digit = number % 10
+                sum += digit * digit
+                number /= 10
+            }
+            
+            return sum
+        }
+        
+        var tortoise = n
+        var hare = getSumOfSquares(n)
+        print("initial tortoise: \(tortoise)")
+        print("initial hare: \(hare)")
+        
+        while hare != 1 && hare != tortoise {
+            tortoise = getSumOfSquares(tortoise)
+            hare = getSumOfSquares(getSumOfSquares(hare))
+            print("loop tortoise: \(tortoise)")
+            print("loop hare: \(hare)")
+        }
+        
+        return hare == 1
+    }
+}
+
+let sol2 = Solution2()
+print(sol2.isHappy(19))
+print("-------")
+print(sol2.isHappy(2))
