@@ -40,15 +40,26 @@ print(moveZeroes(&arr))
 func moveZeroes(_ nums: inout [Int]) {
     let count = nums.count
     var index = 0
+    var zeroCount = 0
     
     while index < count {
         if nums[index] == 0 {
             nums.insert(nums.remove(at: index), at: count - 1)
+            zeroCount += 1
+        } else {
+            index += 1
         }
-        index += 1
+        
+        print(index)
+        print(zeroCount)
+        print(nums)
+        print("-----")
+        if index + zeroCount == count {
+            index = count
+        }
     }
 }
 
-var arr = [0,1,0,3,12]
+var arr = [0,0,1,0,3,12,0,9,3,0]
 moveZeroes(&arr)
 print(arr)
