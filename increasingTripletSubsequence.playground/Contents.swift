@@ -53,3 +53,29 @@ func increasingTriplet(_ nums: [Int]) -> Bool {
 print(increasingTriplet([1,2,3,4,5]))
 print(increasingTriplet([5,4,3,2,1]))
 print(increasingTriplet([2,1,5,0,4,6]))
+print(increasingTriplet([2,3,1,9,8,7]))
+
+// sol2:
+func increasingTriplet2(_ nums: [Int]) -> Bool {
+    var first = Int.max
+    var second = Int.max
+    
+    for num in nums {
+        if num <= first {
+            first = num
+        } else if num <= second {
+            second = num
+        } else {
+            print(first,second,num)
+            return true
+        }
+    }
+    
+    return false
+}
+
+// Test cases
+print(increasingTriplet2([1,2,3,4,5])) // Output: true
+print(increasingTriplet2([5,4,3,2,1])) // Output: false
+print(increasingTriplet2([2,1,5,0,4,6])) // Output: true
+print(increasingTriplet2([2,3,1,9,8,7])) // edge case failing for sol 2
