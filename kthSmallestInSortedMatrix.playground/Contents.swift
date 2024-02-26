@@ -26,3 +26,33 @@ func kthSmallest(_ matrix: [[Int]], _ k: Int) -> Int {
 
 print(kthSmallest([[1,5,9],[10,11,13],[12,13,15]], 8))
 print(kthSmallest([[-5]], 1))
+
+
+// Solution2: https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/solutions/885112/yet-another-swift-solution
+
+class Solution {
+    func kthSmallest(_ matrix: [[Int]], _ k: Int) -> Int {
+        let rowCount = matrix.count, columnCount = rowCount > 0 ? matrix[0].count : 0
+        var left = matrix[0][0], right = matrix[rowCount - 1][columnCount - 1]
+        while left < right {
+            let middle = (left + right) / 2
+            var j = columnCount - 1, count = 0
+            for i in 0..<rowCount {
+                while j >= 0 && matrix[i][j] > middle {
+                    j -= 1
+                }
+                if j < 0 { break }
+                count += j + 1
+            }
+            if count < k {
+                left = middle + 1
+            } else {
+                right = middle
+            }
+        }
+        return left
+    }
+}
+
+let sol = Solution()
+print(sol.kthSmallest([[1,5,9],[10,11,13],[12,13,15]], 8))
