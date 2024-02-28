@@ -36,28 +36,27 @@
  Here's the algorithm:
 
  Initialize two data structures:
-
- elements: A dictionary to store the mapping between elements and their indices in the array.
- array: An array to store the elements themselves.
+     elements: A dictionary to store the mapping between elements and their indices in the array.
+     array: An array to store the elements themselves.
+ 
  Implement the insert method:
-
- Check if the element already exists in the dictionary. If it does, return false.
- Otherwise, add the element to the dictionary with its index in the array.
- Append the element to the end of the array.
- Return true.
+    Check if the element already exists in the dictionary. If it does, return false.
+    Otherwise, add the element to the dictionary with its index in the array.
+    Append the element to the end of the array.
+    Return true.
+ 
  Implement the remove method:
-
- Check if the element exists in the dictionary. If it doesn't, return false.
- Otherwise, retrieve the index of the element from the dictionary.
- Swap the element at the index with the last element in the array.
- Update the index of the last element in the dictionary.
- Remove the element from the array.
- Remove the element from the dictionary.
- Return true.
+     Check if the element exists in the dictionary. If it doesn't, return false.
+     Otherwise, retrieve the index of the element from the dictionary.
+     Swap the element at the index with the last element in the array.
+     Update the index of the last element in the dictionary.
+     Remove the element from the array.
+     Remove the element from the dictionary.
+     Return true.
+ 
  Implement the getRandom method:
-
- Generate a random index within the range of the array length.
- Return the element at the randomly generated index.
+     Generate a random index within the range of the array length.
+     Return the element at the randomly generated index.
 
  */
 
