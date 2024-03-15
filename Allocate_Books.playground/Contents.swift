@@ -90,6 +90,50 @@
  Where ‘n’ denotes the number of books and ‘m’ denotes the number of students. ‘arr[i]’ denotes an element at position ‘i’ in the sequence.
 
  Time limit: 1 second
+
+
+
+ Algo:
+ Here's an algorithm for allocating books to students with minimum workload:
+
+ **This approach uses Binary Search**
+
+ 1. **Function Definition:** Define a function `allocateBooks(arr, n, m)` that takes three arguments:
+     * `arr`: An array of integers representing the number of pages in each book.
+     * `n`: The total number of books.
+     * `m`: The number of students.
+
+ 2. **Input Validation:** Check if the number of students (`m`) is greater than the number of books (`n`). If yes, it's impossible to allocate and return -1.
+
+ 3. **Find Maximum Pages:** Calculate the total number of pages (`total_pages`) by summing up all elements in `arr`.
+
+ 4. **Binary Search:**
+     * Initialize `low` to the maximum number of pages in a book (the largest element in `arr`) and `high` to the total number of pages (`total_pages`).
+     * While `low` is less than or equal to `high`:
+         * Calculate the mid value (`mid`) as the average of `low` and `high`.
+         * If `isValid(arr, n, m, mid)` returns `True`:
+             * Update the result (`result`) to `mid` as we found a valid allocation with this maximum workload.
+             * Search in the left half (`high = mid - 1`) to find a smaller possible workload.
+         * Otherwise, search in the right half (`low = mid + 1`) as the current `mid` workload is not feasible.
+
+ 5. **`isValid` Function:** Define a helper function `isValid(arr, n, m, max_pages)` that checks if it's possible to allocate books with a maximum workload of `max_pages`.
+     * Initialize `student_count` to 1 and `current_pages` to 0.
+     * Iterate through the `arr` array:
+         * Add the current book's pages (`arr[i]`) to `current_pages`.
+         * If `current_pages` exceeds `max_pages`:
+             * Increment `student_count` and reset `current_pages` to the current book's pages.
+         * If `student_count` becomes greater than `m` (number of students), it's not possible to allocate with this workload, return `False`.
+     * If the loop finishes iterating through all books, and `student_count` is less than or equal to `m`, then the allocation is possible, return `True`.
+
+ 6. **Return Result:** After the binary search loop, return the `result` which holds the minimum workload for allocation.
+
+ **Explanation:**
+
+ - Binary search efficiently searches for the optimal workload by checking the feasibility of mid values between the minimum (max pages in a book) and maximum (total pages).
+ - The `isValid` function checks if a specific workload can be achieved by allocating books to students.
+
+
+ This algorithm has a time complexity of O(n * log(total_pages)) due to binary search and the `isValid` function iterating through the book list in the worst case.
  */
 
 func allocateBooks(_ arr: [Int], _ n: Int, _ m: Int) -> Int {
