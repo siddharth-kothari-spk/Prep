@@ -54,3 +54,21 @@ func largestSumContiguousSubarray(_ arr: [Int]) -> Int {
 
 let arr = [-2, -3, 4, -1, -2, 1, 5, -3]
 print(largestSumContiguousSubarray(arr))
+
+
+// Using dynamic programming
+
+func largestSumContiguousSubarrayDP(_ arr: [Int]) -> Int {
+    
+    var dp : [Int] = Array(repeating: 0, count: arr.count)
+    var result = 0
+    dp[0] = arr[0]
+    
+    for index in 1..<arr.count {
+        dp[index] = max(arr[index], arr[index] + dp[index - 1])
+        result = max(result, dp[index])
+    }
+    return result
+}
+
+print(largestSumContiguousSubarrayDP(arr))
