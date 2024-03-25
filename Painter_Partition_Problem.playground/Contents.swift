@@ -1,6 +1,7 @@
 /*
  https://www.codingninjas.com/studio/problems/painter-s-partition-problem_1089557?topList=top-google-coding-interview-questions&problemListRedirection=true
  
+ https://www.geeksforgeeks.org/painters-partition-problem/
  Problem statement
  Given an array/list of length ‘n’, where the array/list represents the boards and each element of the given array/list represents the length of each board. Some ‘k’ numbers of painters are available to paint these boards. Consider that each unit of a board takes 1 unit of time to paint.
 
@@ -145,3 +146,4 @@ func minTimeToPaintBoards(_ boards: [Int], _ k: Int) -> Int {
 }
 
 print(minTimeToPaintBoards([2, 1, 5, 6, 2, 3], 2))
+print(minTimeToPaintBoards([10, 20, 30, 40], 2))
