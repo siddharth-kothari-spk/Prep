@@ -82,8 +82,8 @@ public class LRUCache<Key: Hashable, Value: Equatable> {
     let newNode = DoublyLinkedListNode(key: key, value: value)
     map[key] = newNode
     if let head = head {
-      head.next = newNode
-      newNode.previous = head
+        newNode.next = head
+        head.previous = newNode
     } else {
       tail = newNode
     }
@@ -126,16 +126,12 @@ public class LRUCache<Key: Hashable, Value: Equatable> {
   }
     
     public func description() {
-        guard var head = head else {
-            print("no head available")
-            return
+        var current: DoublyLinkedListNode? = head
+        while current != nil {
+            print(current!.value, terminator: " -> ")
+            current = current?.next
         }
-        
-        while head != tail && head.next != nil {
-            print(head.value)
-            guard let next = head.next else { return }
-            head = next
-        }
+        print("nil")
     }
 }
 
@@ -162,16 +158,16 @@ var lruCache = LRUCache<Int, String>(capacity: 3)
 lruCache.put(1, "A")
 lruCache.put(2, "B")
 lruCache.put(3, "C")
-//lruCache.description()
+lruCache.description() // C -> B -> A -> nil
 lruCache.get(2)
-//lruCache.description()
+lruCache.description() // B -> C -> A -> nil
 lruCache.get(4)
-//lruCache.description()
+lruCache.description() // B -> C -> A -> nil
 lruCache.put(4, "D")
 lruCache.put(3, "E")
-//lruCache.description()
+lruCache.description() // E -> D -> B -> nil
 lruCache.get(4)
-//lruCache.description()
+lruCache.description() // D -> E -> B -> nil
 lruCache.put(1, "A")
-lruCache.description()
+lruCache.description() // A -> D -> E -> nil
 
