@@ -97,7 +97,7 @@ class ViewController: UIViewController {
     
     private func updateUI() {
         var attributedString = NSMutableAttributedString()
-        
+        print(attributedString)
         for textPart in viewModel.textParts {
             let partAttributedString = textPart.applyStyles()
             attributedString.append(partAttributedString)
@@ -136,4 +136,6 @@ let jsonString = """
 let viewModel = ViewModel(jsonString: jsonString)
 let viewController = ViewController()
 viewController.viewModel = viewModel
+PlaygroundPage.current.liveView = viewController
+PlaygroundPage.current.needsIndefiniteExecution = true
 
