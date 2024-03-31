@@ -55,3 +55,45 @@ func countPairsWithHash(arr: [Int], k: Int) -> Int {
 }
 
 print(countPairsWithHash(arr: [1, 5, 7, -1], k: 6))
+
+/*
+ 2. Two Pointer Approach (Requires Sorted Array)
+
+This approach applies only if the array is sorted. Here's the algorithm:
+
+Sort the array arr in ascending order.
+Initialize two pointers left and right to the beginning (index 0) and end (index n-1) of the array, respectively.
+While left is less than right:
+Calculate the current sum current_sum = arr[left] + arr[right].
+If current_sum is equal to the target sum k, increment a counter count and move both pointers left one step forward and right one step backward.
+If current_sum is less than k, move the left pointer left one step forward to increase the sum.
+If current_sum is greater than k, move the right pointer right one step backward to decrease the sum.
+After the loop terminates, return the value of the counter count.
+ */
+
+func countPairsWithTwoPointers(arr: [Int], k: Int) -> Int {
+  guard !arr.isEmpty else { return 0 }
+  var sortedArr = arr.sorted()
+  var left = 0
+  var right = sortedArr.count - 1
+  var count = 0
+  var pairs: [(Int,Int)] = []
+    
+  while left < right {
+    let currentSum = sortedArr[left] + sortedArr[right]
+    if currentSum == k {
+      count += 1
+      pairs.append((sortedArr[left], sortedArr[right]))
+      left += 1
+      right -= 1
+    } else if currentSum < k {
+      left += 1
+    } else {
+      right -= 1
+    }
+  }
+  print(pairs)
+  return count
+}
+
+print(countPairsWithTwoPointers(arr: [1, 5, 7, -1], k: 6))
