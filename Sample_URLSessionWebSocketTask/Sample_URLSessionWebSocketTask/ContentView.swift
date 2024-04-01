@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = WebSocketViewModel()
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("WebSocket Demo")
+                .font(.title)
+            if let message = viewModel.message {
+                Text(message)
+                    .padding()
+            }
+            Button("Send Message") {
+                viewModel.sendMessage()
+            }
         }
         .padding()
+        .onAppear {
+            //viewModel.connect()
+        }
     }
 }
 

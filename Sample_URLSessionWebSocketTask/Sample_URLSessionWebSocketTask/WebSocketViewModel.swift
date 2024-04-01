@@ -17,11 +17,12 @@ class WebSocketViewModel: NSObject, ObservableObject {
             guard let url = URL(string: "wss://echo.websocket.org") else { return }
             let session = URLSession(configuration: .default)
             webSocketTask = session.webSocketTask(with: url)
-           // webSocketTask?.delegate = self
+            webSocketTask?.delegate = self
             webSocketTask?.resume()
         }
 
         func sendMessage() {
+            connect()
             message = "Hello from the client!"
             if let message = message, let data = message.data(using: .utf8) {
                 webSocketTask?.send(.data(data)) { error in
