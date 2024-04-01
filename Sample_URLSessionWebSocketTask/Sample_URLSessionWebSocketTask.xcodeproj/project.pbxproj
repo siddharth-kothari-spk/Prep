@@ -14,6 +14,7 @@
 		B108F7AC2BBA4470000D7D08 /* Sample_URLSessionWebSocketTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108F7AB2BBA4470000D7D08 /* Sample_URLSessionWebSocketTaskTests.swift */; };
 		B108F7B62BBA4470000D7D08 /* Sample_URLSessionWebSocketTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108F7B52BBA4470000D7D08 /* Sample_URLSessionWebSocketTaskUITests.swift */; };
 		B108F7B82BBA4470000D7D08 /* Sample_URLSessionWebSocketTaskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108F7B72BBA4470000D7D08 /* Sample_URLSessionWebSocketTaskUITestsLaunchTests.swift */; };
+		B108F7C52BBA452C000D7D08 /* WebSocketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B108F7C42BBA452C000D7D08 /* WebSocketViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		B108F7B12BBA4470000D7D08 /* Sample_URLSessionWebSocketTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Sample_URLSessionWebSocketTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B108F7B52BBA4470000D7D08 /* Sample_URLSessionWebSocketTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample_URLSessionWebSocketTaskUITests.swift; sourceTree = "<group>"; };
 		B108F7B72BBA4470000D7D08 /* Sample_URLSessionWebSocketTaskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample_URLSessionWebSocketTaskUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B108F7C42BBA452C000D7D08 /* WebSocketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				B108F79A2BBA446D000D7D08 /* Sample_URLSessionWebSocketTaskApp.swift */,
 				B108F79C2BBA446D000D7D08 /* ContentView.swift */,
+				B108F7C42BBA452C000D7D08 /* WebSocketViewModel.swift */,
 				B108F79E2BBA4470000D7D08 /* Assets.xcassets */,
 				B108F7A02BBA4470000D7D08 /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B108F7C52BBA452C000D7D08 /* WebSocketViewModel.swift in Sources */,
 				B108F79D2BBA446D000D7D08 /* ContentView.swift in Sources */,
 				B108F79B2BBA446D000D7D08 /* Sample_URLSessionWebSocketTaskApp.swift in Sources */,
 			);
