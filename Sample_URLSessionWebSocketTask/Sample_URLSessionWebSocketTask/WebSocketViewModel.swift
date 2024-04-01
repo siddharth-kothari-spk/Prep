@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class WebSocketViewModel: ObservableObject {
+class WebSocketViewModel: NSObject, ObservableObject {
     private var webSocketTask: URLSessionWebSocketTask?
     @Published var message: String? = nil
     
@@ -36,4 +36,25 @@ class WebSocketViewModel: ObservableObject {
             webSocketTask?.cancel(with: .normalClosure, reason: nil)
             webSocketTask = nil
         }
+}
+
+extension WebSocketViewModel: URLSessionWebSocketDelegate {
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
+        print("WebSocket connection opened")
+        connect() // Let's call connect here to simulate automatic connection on open
+    }
+
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didReceive message: URLSessionWebSocketTask.Message) {
+        if case let .string(text) = message {
+            self.message = text
+            print("Received message: \(text)")
+        } else {
+            print("Received data message")
+        }
+    }
+
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
+        print("WebSocket connection closed")
+        self.message = nil
+    }
 }
