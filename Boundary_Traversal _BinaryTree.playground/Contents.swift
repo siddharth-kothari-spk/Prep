@@ -37,8 +37,8 @@ class TreeNode {
 
   init(_ val: Int) {
     self.val = val
-//    self.left = nil
-//    self.right = nil
+    self.left = nil
+    self.right = nil
   }
 }
 
@@ -51,10 +51,10 @@ func boundaryTraversal(_ root: TreeNode?) {
   }
 
   // Left boundary (excluding leaf nodes)
- // leftBoundary(root.left)
+  leftBoundary(root.left)
 
   // Print all leaf nodes (left to right)
- // leafNodes(root)
+  leafNodes(root)
 
   // Right boundary (excluding leaf nodes) in reverse order
   rightBoundary(root.right)
