@@ -29,6 +29,7 @@
  This approach ensures an anti-clockwise traversal of the boundary nodes of the binary tree.
  */
 
+import Foundation
 class TreeNode {
   var val: Int
   var left: TreeNode?
@@ -53,10 +54,10 @@ func boundaryTraversal(_ root: TreeNode?) {
  // leftBoundary(root.left)
 
   // Print all leaf nodes (left to right)
-  leafNodes(root)
+ // leafNodes(root)
 
   // Right boundary (excluding leaf nodes) in reverse order
- // rightBoundary(root.right)
+  rightBoundary(root.right)
 }
 
 func isLeaf(_ node: TreeNode?) -> Bool {
@@ -64,17 +65,20 @@ func isLeaf(_ node: TreeNode?) -> Bool {
 }
 
 func leftBoundary(_ node: TreeNode?) {
-    var node = node
-  while node != nil {
-    if !isLeaf(node) {
-        print(node?.val, terminator: " ")
-    }
-      if let left = node?.left {
-      node = left
-    } else if let right = node?.right {
-      node = right
-    }
-  }
+
+    var leftNode = node
+    while leftNode != nil {
+        if !isLeaf(leftNode) {
+            print(leftNode?.val as Any, terminator: " ")
+        }
+        if let left = leftNode?.left {
+            leftNode = left
+        } else {
+            if let right = leftNode?.right {
+                leftNode = right
+            }
+        }
+      }
 }
 
 func leafNodes(_ node: TreeNode?) {
@@ -100,7 +104,6 @@ func rightBoundary(_ node: TreeNode?) {
       node = left
     }
   }
-
   // Print right boundary in reverse order
   while !stack.isEmpty {
     print(stack.removeLast(), terminator: " ")
