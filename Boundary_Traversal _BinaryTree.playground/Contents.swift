@@ -69,14 +69,16 @@ func leftBoundary(_ node: TreeNode?) {
     var leftNode = node
     while leftNode != nil {
         if !isLeaf(leftNode) {
-            print(leftNode?.val as Any, terminator: " ")
+            if let val = leftNode?.val {
+                print(val , terminator: " ")
+            }
         }
         if let left = leftNode?.left {
             leftNode = left
+        } else if let right = leftNode?.right {
+            leftNode = right
         } else {
-            if let right = leftNode?.right {
-                leftNode = right
-            }
+            leftNode = nil
         }
       }
 }
@@ -102,6 +104,8 @@ func rightBoundary(_ node: TreeNode?) {
       node = right
     } else if let left = node?.left {
       node = left
+    } else {
+        node = nil
     }
   }
   // Print right boundary in reverse order
@@ -124,4 +128,8 @@ root.right?.right = TreeNode(25)
 root.left?.right?.left = TreeNode(10)
 root.left?.right?.right = TreeNode(14)
 
-print(boundaryTraversal(root))
+//         20
+//   8          22
+// 4    12    X   25
+//    10  14
+boundaryTraversal(root)
