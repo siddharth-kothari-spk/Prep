@@ -86,3 +86,44 @@ print("\n")
 
 root.inOrderTraversal(node: root)
 
+
+
+/*
+ Iterative Approach (using Level-Order Traversal):
+
+ Create a queue: Initialize an empty queue to store the tree nodes.
+ Enqueue root: If the root node exists, add it to the queue.
+ While queue is not empty:
+ Dequeue node: Remove the first node from the queue.
+ Swap children: If both left and right children exist, swap their references.
+ Enqueue children: Add the left and right children of the dequeued node (if they exist) to the back of the queue.
+ Explanation:
+
+ This approach uses a queue to perform a level-order traversal of the tree.
+ At each level, we swap the left and right children of the nodes in the queue.
+ By the time we process all nodes, the entire tree will be mirrored.
+ */
+
+func mirrorTreeIterative<Value>(_ root: TreeNode<Value>?) {
+  guard let root = root else { return }
+  var queue = [TreeNode<Value>]()
+  queue.append(root)
+
+  while !queue.isEmpty {
+    let node = queue.removeFirst()
+    swap(&node.left, &node.right)
+    if let left = node.left {
+      queue.append(left)
+    }
+    if let right = node.right {
+      queue.append(right)
+    }
+  }
+}
+
+print("\n")
+root.inOrderTraversal(node: root)
+mirrorTreeIterative(root)
+print("\n")
+root.inOrderTraversal(node: root)
+
