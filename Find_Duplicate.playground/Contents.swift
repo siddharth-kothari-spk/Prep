@@ -25,3 +25,19 @@ func findDuplicate(_ nums: [Int]) -> Int {
 let nums = [1, 3, 3, 4, 2]
 let duplicate = findDuplicate(nums)
 print("The duplicate number is: \(duplicate)")
+
+
+func findDuplicate2(_ nums: [Int]) -> Int {
+    var dict: [Int: Int] = [:]
+    
+    for num in nums {
+        dict[num, default: 0] += 1
+        if dict[num]! > 1 {
+            return num
+        }
+    }
+    
+    return -1
+}
+
+print(findDuplicate2(nums))
