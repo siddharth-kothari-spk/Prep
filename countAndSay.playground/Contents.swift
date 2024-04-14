@@ -29,10 +29,12 @@ func countAndSay(_ n: Int) -> String {
         var count = 1
 
         for i in 1..<result.count {
-            if result[result.index(result.startIndex, offsetBy: i)] == result[result.index(result.startIndex, offsetBy: i - 1)] {
+            let first = result[result.index(result.startIndex, offsetBy: i)]
+            let second = result[result.index(result.startIndex, offsetBy: i - 1)]
+            if first == second {
                 count += 1
             } else {
-                tempResult += "\(count)\(result[result.index(result.startIndex, offsetBy: i - 1)])"
+                tempResult += "\(count)\(second)"
                 count = 1
             }
         }
@@ -47,3 +49,29 @@ func countAndSay(_ n: Int) -> String {
 // Example usage:
 let countAndSayResult = countAndSay(8)
 print(countAndSayResult)
+
+func countAndSay2(_ n: Int) -> String {
+  guard n > 0 else { return "" }
+  
+  var sequence = "1" // Start with the base case
+  for _ in 1..<n { // Generate sequence for n-1 terms
+    var nextSequence = ""
+    var currentChar = sequence.first!
+    var count = 1
+    for char in sequence.dropFirst() {
+      if char == currentChar {
+        count += 1
+      } else {
+        nextSequence += "\(count)\(currentChar)"
+        currentChar = char
+        count = 1
+      }
+    }
+    nextSequence += "\(count)\(currentChar)" // Add the last group
+    sequence = nextSequence
+  }
+  return sequence
+}
+
+let countAndSayResult2 = countAndSay2(8)
+print(countAndSayResult2)
