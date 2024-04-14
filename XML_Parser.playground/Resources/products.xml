@@ -1,0 +1,5 @@
+<products>
+<product id="1" name="iPhone" price="999.99" />
+<product id="2" name="iPad" price="499.99" />
+</products>
+
