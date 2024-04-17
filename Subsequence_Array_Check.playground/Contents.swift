@@ -49,3 +49,24 @@ func subsequenceCheck(_ parent: [Int], _ subseq: [Int]) -> Bool {
 
 subsequenceCheck([15, 1, 22, 25, 6, -1, 8, 10], [1, 6, -1, 10])
 subsequenceCheck([15, 1, 22, 25, 6, -1, 8, 10], [-1, 6, -1, 10])
+
+// Solution 2
+
+func isSubsequence(_ array: [Int], _ sequence: [Int]) -> Bool {
+    var arrayIndex = 0
+    var sequenceIndex = 0
+    
+    while arrayIndex < array.count && sequenceIndex < sequence.count {
+        if array[arrayIndex] == sequence[sequenceIndex] {
+            sequenceIndex += 1
+        }
+        arrayIndex += 1
+    }
+    
+    return sequenceIndex == sequence.count
+}
+
+// Test the function
+let array = [15, 1, 22, 25, 6, -1, 8, 10]
+let sequence = [1, 6, -1, 10]
+print(isSubsequence(array, sequence))
