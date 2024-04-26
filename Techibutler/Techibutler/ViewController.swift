@@ -13,7 +13,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        NetworkManager().fetchPosts()
+        NetworkManager().fetchPosts { result in
+            switch result {
+                
+            case .success(let posts):
+                print("total posts recived: \(posts.count)")
+            
+            case .failure(let error):
+                print("error recieved: \(error.localizedDescription)")
+            
+            }
+        }
     }
 
 
