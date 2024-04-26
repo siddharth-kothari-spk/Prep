@@ -17,6 +17,7 @@
 		B13C08BF2BDB850000A3CBE7 /* TechibutlerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08BE2BDB850000A3CBE7 /* TechibutlerUITests.swift */; };
 		B13C08C12BDB850000A3CBE7 /* TechibutlerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08C02BDB850000A3CBE7 /* TechibutlerUITestsLaunchTests.swift */; };
 		B13C08CE2BDB852B00A3CBE7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08CD2BDB852B00A3CBE7 /* Post.swift */; };
+		B13C08D02BDB871200A3CBE7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08CF2BDB871200A3CBE7 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		B13C08BE2BDB850000A3CBE7 /* TechibutlerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechibutlerUITests.swift; sourceTree = "<group>"; };
 		B13C08C02BDB850000A3CBE7 /* TechibutlerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechibutlerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B13C08CD2BDB852B00A3CBE7 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		B13C08CF2BDB871200A3CBE7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				B13C089F2BDB84FB00A3CBE7 /* SceneDelegate.swift */,
 				B13C08A12BDB84FB00A3CBE7 /* ViewController.swift */,
 				B13C08CD2BDB852B00A3CBE7 /* Post.swift */,
+				B13C08CF2BDB871200A3CBE7 /* NetworkManager.swift */,
 				B13C08A32BDB84FB00A3CBE7 /* Main.storyboard */,
 				B13C08A62BDB850000A3CBE7 /* Assets.xcassets */,
 				B13C08A82BDB850000A3CBE7 /* LaunchScreen.storyboard */,
@@ -263,6 +266,7 @@
 			files = (
 				B13C08A22BDB84FB00A3CBE7 /* ViewController.swift in Sources */,
 				B13C089E2BDB84FB00A3CBE7 /* AppDelegate.swift in Sources */,
+				B13C08D02BDB871200A3CBE7 /* NetworkManager.swift in Sources */,
 				B13C08A02BDB84FB00A3CBE7 /* SceneDelegate.swift in Sources */,
 				B13C08CE2BDB852B00A3CBE7 /* Post.swift in Sources */,
 			);
