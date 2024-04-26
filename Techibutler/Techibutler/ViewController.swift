@@ -54,7 +54,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostCell
-        cell.
         let post = posts[indexPath.row]
         cell.configure(with: post)
         return cell

@@ -11,7 +11,9 @@ import UIKit
 class PostCell: UITableViewCell {
     
     func configure(with post: Post) {
-        textLabel?.text = "ID: \(post.id)"
-        detailTextLabel?.text = post.title
+        var defaultConfig = self.defaultContentConfiguration()
+        defaultConfig.text = "ID: \(post.id)"
+        defaultConfig.secondaryText = post.title
+        self.contentConfiguration = defaultConfig
     }
 }
