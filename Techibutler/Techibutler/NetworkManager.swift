@@ -10,7 +10,7 @@ import Foundation
 class NetworkManager {
     
     public func fetchPosts(completion: @escaping (Result<[Post], NetworkError>) -> Void) {
-        guard let url = URL(string: "https://jsonplaceholder.typicode.com/pos2ts") else {
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else {
             completion(.failure(.invalidURL))
             return
         }
