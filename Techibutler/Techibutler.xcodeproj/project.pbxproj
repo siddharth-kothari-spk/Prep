@@ -19,6 +19,7 @@
 		B13C08CE2BDB852B00A3CBE7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08CD2BDB852B00A3CBE7 /* Post.swift */; };
 		B13C08D02BDB871200A3CBE7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08CF2BDB871200A3CBE7 /* NetworkManager.swift */; };
 		B13C08D22BDB8AB400A3CBE7 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08D12BDB8AB400A3CBE7 /* NetworkError.swift */; };
+		B13C08D42BDB95AF00A3CBE7 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08D32BDB95AF00A3CBE7 /* PostCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		B13C08CD2BDB852B00A3CBE7 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B13C08CF2BDB871200A3CBE7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B13C08D12BDB8AB400A3CBE7 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		B13C08D32BDB95AF00A3CBE7 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				B13C089F2BDB84FB00A3CBE7 /* SceneDelegate.swift */,
 				B13C08A12BDB84FB00A3CBE7 /* ViewController.swift */,
 				B13C08CD2BDB852B00A3CBE7 /* Post.swift */,
+				B13C08D32BDB95AF00A3CBE7 /* PostCell.swift */,
 				B13C08CF2BDB871200A3CBE7 /* NetworkManager.swift */,
 				B13C08D12BDB8AB400A3CBE7 /* NetworkError.swift */,
 				B13C08A32BDB84FB00A3CBE7 /* Main.storyboard */,
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B13C08D42BDB95AF00A3CBE7 /* PostCell.swift in Sources */,
 				B13C08A22BDB84FB00A3CBE7 /* ViewController.swift in Sources */,
 				B13C089E2BDB84FB00A3CBE7 /* AppDelegate.swift in Sources */,
 				B13C08D02BDB871200A3CBE7 /* NetworkManager.swift in Sources */,

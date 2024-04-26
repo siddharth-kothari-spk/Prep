@@ -8,11 +8,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        tableView = UITableView(frame: view.bounds)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
+        view.addSubview(tableView)
+        
+        fetchPosts()
+    }
+
+    private func fetchPosts() {
         NetworkManager().fetchPosts { result in
             switch result {
                 
@@ -26,6 +38,19 @@ class ViewController: UIViewController {
         }
     }
 
-
 }
 
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 100
+    }
+        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = "test \(indexPath.row)"
+        cell.detailTextLabel?.text = "detail test \(indexPath.row)"
+        return cell
+    }
+}
