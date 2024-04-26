@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     
     var tableView: UITableView!
     var posts: [Post] = []
+    var currentPage = 1
+    var isLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,18 +24,20 @@ class ViewController: UIViewController {
         tableView.register(PostCell.self, forCellReuseIdentifier: "PostCell")
         view.addSubview(tableView)
         
-        fetchPosts()
+        fetchPosts(currentPage)
     }
 
-    private func fetchPosts() {
-        NetworkManager().fetchPosts { result in
+    private func fetchPosts(_ currentPage: Int) {
+        isLoading = true
+        NetworkManager().fetchPosts(currentPage) { result in
             switch result {
                 
             case .success(let responsePosts):
                 print("total posts recived: \(responsePosts.count)")
-                self.posts = responsePosts
+                self.posts.append(contentsOf: responsePosts)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.isLoading = false
                 }
             
             case .failure(let error):
@@ -42,7 +46,19 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            let offsetY = scrollView.contentOffset.y
+            let contentHeight = scrollView.contentSize.height
+            let screenHeight = scrollView.frame.size.height
+            
+            if offsetY > contentHeight - screenHeight {
+                if !isLoading {
+                    currentPage += 1
+                    fetchPosts(currentPage)
+                }
+            }
+        }
 }
 
 
