@@ -20,6 +20,7 @@
 		B13C08D02BDB871200A3CBE7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08CF2BDB871200A3CBE7 /* NetworkManager.swift */; };
 		B13C08D22BDB8AB400A3CBE7 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08D12BDB8AB400A3CBE7 /* NetworkError.swift */; };
 		B13C08D42BDB95AF00A3CBE7 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08D32BDB95AF00A3CBE7 /* PostCell.swift */; };
+		B13C08D62BDBD2DA00A3CBE7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13C08D52BDBD2DA00A3CBE7 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		B13C08CF2BDB871200A3CBE7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B13C08D12BDB8AB400A3CBE7 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		B13C08D32BDB95AF00A3CBE7 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		B13C08D52BDBD2DA00A3CBE7 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				B13C08D32BDB95AF00A3CBE7 /* PostCell.swift */,
 				B13C08CF2BDB871200A3CBE7 /* NetworkManager.swift */,
 				B13C08D12BDB8AB400A3CBE7 /* NetworkError.swift */,
+				B13C08D52BDBD2DA00A3CBE7 /* Utilities.swift */,
 				B13C08A32BDB84FB00A3CBE7 /* Main.storyboard */,
 				B13C08A62BDB850000A3CBE7 /* Assets.xcassets */,
 				B13C08A82BDB850000A3CBE7 /* LaunchScreen.storyboard */,
@@ -276,6 +279,7 @@
 				B13C08D02BDB871200A3CBE7 /* NetworkManager.swift in Sources */,
 				B13C08D22BDB8AB400A3CBE7 /* NetworkError.swift in Sources */,
 				B13C08A02BDB84FB00A3CBE7 /* SceneDelegate.swift in Sources */,
+				B13C08D62BDBD2DA00A3CBE7 /* Utilities.swift in Sources */,
 				B13C08CE2BDB852B00A3CBE7 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

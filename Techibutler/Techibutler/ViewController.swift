@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         view.addSubview(tableView)
         
         fetchPosts(currentPage)
+        Utilities.performHeavyComputation()
     }
 
     private func fetchPosts(_ currentPage: Int) {
@@ -56,6 +57,7 @@ class ViewController: UIViewController {
                 if !isLoading {
                     currentPage += 1
                     fetchPosts(currentPage)
+                    Utilities.performHeavyComputation()
                 }
             }
         }
