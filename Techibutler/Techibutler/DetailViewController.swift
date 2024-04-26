@@ -11,16 +11,32 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var post: Post?
+    var postTitle: UILabel!
+    var postDescription: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Display detailed information about the post
+        setupUI()
+        postDetails()
+    }
+    
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
+        postTitle = UILabel(frame: CGRect(x: 50, y: 50, width: 300, height: 60))
+        postTitle.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        view.addSubview(postTitle)
+        
+        postDescription = UILabel(frame: CGRect(x: 50, y: 120, width: 300, height: 300))
+        postDescription.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        postDescription.numberOfLines = 0
+        view.addSubview(postDescription)
+    }
+    
+    private func postDetails() {
         if let post = post {
-            // Example: Display post details on the view
-            // You can access post properties like post.id, post.title, etc.
-            print("Selected Post ID: \(post.id)")
-            print("Selected Post Title: \(post.title)")
+            postTitle.text = "Title: " + post.title
+            postDescription.text = "Body: \n" + post.body
         }
     }
 }

@@ -81,6 +81,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
        let post = posts[indexPath.row]
        let detailViewController = DetailViewController()
        detailViewController.post = post
-       navigationController?.pushViewController(detailViewController, animated: true)
+        detailViewController.modalPresentationStyle = .popover
+        present(detailViewController, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
