@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        title = "Posts"
         tableView = UITableView(frame: view.bounds)
         tableView.dataSource = self
         tableView.delegate = self
@@ -75,5 +75,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let post = posts[indexPath.row]
         cell.configure(with: post)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       let post = posts[indexPath.row]
+       let detailViewController = DetailViewController()
+       detailViewController.post = post
+       navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
