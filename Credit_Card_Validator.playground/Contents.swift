@@ -103,7 +103,7 @@ func validateCreditCard(cardNumber: String, expirationDate: String) -> String? {
         return nil
     }
 }
-
+/*
 // Example Usage
 var cardNum = "1111-1222-1112-1216"
 if let cardType = validateCreditCard(cardNumber: cardNum, expirationDate: "12/16") {
@@ -132,4 +132,46 @@ if let cardType = validateCreditCard(cardNumber: cardNum, expirationDate: "12/16
 } else {
     print("Invalid card or expiration date")
 }
+*/
 
+// Luhn Algorithm
+import Foundation
+
+func isValidCreditCard(number: String) -> Bool {
+    // Clean the input string (remove spaces and hyphens)
+    let cleanedNumber = number.replacingOccurrences(of: "\\s|-", with: "", options: .regularExpression)
+    
+    // Ensure the number contains only digits
+    guard cleanedNumber.allSatisfy({ $0.isNumber }) else {
+        return false
+    }
+    
+    // Reverse the number to facilitate the process from the rightmost digit
+    let reversedDigits = cleanedNumber.reversed().map { Int(String($0))! }
+    print("reversedDigits: \(reversedDigits)")
+    
+    // Apply the Luhn algorithm
+    var total = 0
+    for (index, digit) in reversedDigits.enumerated() {
+        print("-------")
+        print("index: \(index), digit: \(digit)")
+        if index % 2 == 1 {
+            // Double every second digit
+            let doubled = digit * 2
+            // Subtract 9 if the doubled value is greater than 9
+            total += doubled > 9 ? doubled - 9 : doubled
+            print("doubled: \(doubled)")
+        } else {
+            // Add other digits directly
+            total += digit
+        }
+        print("total: \(total)")
+    }
+    
+    // Check if the total modulo 10 is zero
+    return total % 10 == 0
+}
+
+// Example Usage
+print(isValidCreditCard(number: "4556 7375 8763 2024")) // Valid card
+print(isValidCreditCard(number: "4556 7375 8763 2023")) // Invalid card
