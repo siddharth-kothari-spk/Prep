@@ -134,6 +134,54 @@ if let cardType = validateCreditCard(cardNumber: cardNum, expirationDate: "12/16
 }
 */
 
+
+// Without regex
+
+enum CardType {
+  case acme, alfa, amex, unknown
+}
+
+func parseCreditCard(_ number: String, _ expiration: String) -> (valid: Bool, type: CardType?) {
+  let numberGroups = number.components(separatedBy: "-")
+  guard numberGroups.count == 4,
+  numberGroups.allSatisfy ({ $0.allSatisfy { $0.isNumber } }),
+        let last4Digits = numberGroups.last,
+        last4Digits.count == 4,
+        let expirationDate = formatExpirationDate(expiration),
+        expirationDate == Int(last4Digits) else {
+    return (false, nil)
+  }
+
+  let prefix = numberGroups.first!
+  let cardType: CardType
+  switch prefix {
+  case "1121":
+    cardType = .acme
+  case "1111":
+    cardType = .alfa
+  case "3796":
+    cardType = .amex
+  default:
+    cardType = .unknown
+  }
+
+  return (true, cardType)
+}
+
+func formatExpirationDate(_ expiration: String) -> Int? {
+  let components = expiration.components(separatedBy: "/")
+  guard components.count == 2,
+        let month = Int(components[0]),
+        let year = Int(components[1]) else { return nil }
+  return month * 100 + (year % 100)
+}
+
+print(parseCreditCard("1115-2228-3333-1126", "11/26"))
+print(parseCreditCard("1115-222a-3333-1126", "11/26"))
+print(parseCreditCard("1115-2228-3333-1127", "11/26"))
+
+
+
 // Luhn Algorithm
 import Foundation
 
@@ -173,5 +221,5 @@ func isValidCreditCard(number: String) -> Bool {
 }
 
 // Example Usage
-print(isValidCreditCard(number: "4556 7375 8763 2024")) // Valid card
-print(isValidCreditCard(number: "4556 7375 8763 2023")) // Invalid card
+//print(isValidCreditCard(number: "4556 7375 8763 2024")) // Valid card
+//print(isValidCreditCard(number: "4556 7375 8763 2023")) // Invalid card
