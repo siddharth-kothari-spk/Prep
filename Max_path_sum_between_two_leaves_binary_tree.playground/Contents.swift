@@ -85,3 +85,67 @@ root.right?.right?.right = TreeNode(4)
 
 let tree = BinaryTree(root)
 print("Maximum path sum between two leaves is \(tree.maxPathSumBetweenLeaves())")
+
+
+// May or may not go through root
+
+class BinaryTree2 {
+    var root: TreeNode?
+    
+    init(_ root: TreeNode?) {
+        self.root = root
+    }
+    
+    func maxPathSum() -> Int {
+        var result = Int.min
+        
+        // Helper function to compute the maximum path sum with recursion
+        @discardableResult
+        func maxPathSumUtil(_ node: TreeNode?) -> Int {
+            guard let node = node else {
+                return 0
+            }
+            
+            // Recursively get the maximum path sum of the left and right subtrees
+            let leftSum = max(0, maxPathSumUtil(node.left))  // Ignore negative paths
+            let rightSum = max(0, maxPathSumUtil(node.right)) // Ignore negative paths
+            
+            // Update the result if the current node forms a path with a higher sum
+            result = max(result, leftSum + rightSum + node.value)
+            
+            // Return the maximum path sum "starting" from the current node
+            return node.value + max(leftSum, rightSum)
+        }
+        
+        // Start the recursion from the root
+        _ = maxPathSumUtil(root)
+        
+        // Return the result, which holds the maximum path sum found
+        return result
+    }
+}
+
+/* Example usage:
+
+# Example usage:
+# Construct the binary tree
+#        10
+#       /  \
+#      2   10
+#     / \    \
+#    20  1   -25
+#              / \
+#             3   4
+
+*/
+let root2 = TreeNode(10)
+root2.left = TreeNode(2)
+root2.right = TreeNode(10)
+root2.left?.left = TreeNode(20)
+root2.left?.right = TreeNode(1)
+root2.right?.right = TreeNode(-25)
+root2.right?.right?.left = TreeNode(3)
+root2.right?.right?.right = TreeNode(4)
+
+let tree2 = BinaryTree2(root2)
+print("Maximum path sum is \(tree2.maxPathSum())")
