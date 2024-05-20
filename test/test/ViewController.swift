@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
 
@@ -52,10 +53,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as UITableViewCell
         let user = self.users[indexPath.row]
-        var content = cell.defaultContentConfiguration()
-        content.text = user.name + " " + user.email
-        content.secondaryText = user.address.street
-        cell.contentConfiguration = content
+//        var content = cell.defaultContentConfiguration()
+//        content.text = user.name + " " + user.email
+//        content.secondaryText = user.address.street
+//        cell.contentConfiguration = content
+        
+        cell.contentConfiguration = UIHostingConfiguration(content: {
+            VStack {
+                Text(user.name + " " + user.email)
+                Text(user.address.city)
+            }
+        })
         return cell
     }
     
