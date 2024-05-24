@@ -91,3 +91,58 @@ for solution in solutions {
     }
     print("---------")
 }
+
+
+// Sol2 : https://www.youtube.com/watch?v=Ph95IHmRp5M&ab_channel=NeetCode
+
+func solveNQueens(_ n: Int) -> [[String]] {
+    
+    var result: [[String]] = []
+    var board = Array(repeating: Array(repeating: ".", count: n), count: n)
+    
+    
+    var columns: Set<Int> = []
+    var positiveDiagonal: Set<Int> = []
+    var negativeDiagonal: Set<Int> = []
+    
+    func backtrack(_ row: Int) {
+        if row == n {
+            var solution = [String]()
+            for i in 0..<n {
+                solution.append(board[i].joined())
+            }
+            result.append(solution)
+            return
+        }
+        
+        for col in 0..<n {
+            if columns.contains(col) || positiveDiagonal.contains(row + col) || negativeDiagonal.contains(row - col) {
+                continue
+            }
+            
+            columns.insert(col)
+            positiveDiagonal.insert(row + col)
+            negativeDiagonal.insert(row - col)
+            board[row][col] = "Q"
+            
+            backtrack(row + 1)
+            
+            columns.remove(col)
+            positiveDiagonal.remove(row + col)
+            negativeDiagonal.remove(row - col)
+            board[row][col] = "."
+        }
+    }
+    
+    backtrack(0)
+    return result
+}
+
+let result = solveNQueens(5)
+for solution in result {
+    for row in solution {
+        print(row)
+    }
+    print("---------")
+}
+
