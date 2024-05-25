@@ -97,3 +97,36 @@ class ViewController_Delegate: UIViewController, UserViewModelDelegate {
         // Update UI based on new user data
     }
 }
+
+/*
+ 4. Combine Framework:
+ Combine provides a declarative Swift API for processing values over time. Here, we use Combine’s publishers and subscribers to establish data flow between the ViewModel and View.
+ */
+
+//ViewModel
+
+import Combine
+
+struct User_Combine {
+    let name: String
+    let email: String
+    let image: String
+}
+class UserViewModel_Combine {
+    var user: CurrentValueSubject<User_Combine, Never> = CurrentValueSubject<User_Combine, Never>(User_Combine(name: "", email: "", image: ""))
+}
+
+//View
+class ViewController_Combine: UIViewController {
+    var viewModel = UserViewModel_Combine()
+    var cancellables = Set<AnyCancellable>()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.user
+            .sink { [weak self] newUser in
+                // Update UI based on new user data
+            }
+            .store(in: &cancellables)
+    }
+}
