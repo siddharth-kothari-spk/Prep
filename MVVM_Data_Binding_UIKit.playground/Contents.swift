@@ -130,3 +130,31 @@ class ViewController_Combine: UIViewController {
             .store(in: &cancellables)
     }
 }
+
+/*
+ 5.Third-party libraries (RxSwift):
+ RxSwift is a popular reactive programming library for Swift. Here, we use RxSwift’s observables and subscriptions to achieve data binding.
+ */
+
+//ViewModel
+import RxSwift
+import RxCocoa
+
+class UserViewModel_RxSwift {
+    let user: BehaviorRelay<User_Combine> = BehaviorRelay<User_Combine>(value: User_Combine(name: "", email: "", image: ""))
+}
+
+//View
+class ViewController_RxSwift: UIViewController {
+    var viewModel = UserViewModel_RxSwift()
+    let disposeBag = DisposeBag()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.user
+            .subscribe(onNext: { newUser in
+                // Update UI based on new user data
+            })
+            .disposed(by: disposeBag)
+    }
+}
