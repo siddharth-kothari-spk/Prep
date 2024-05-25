@@ -34,3 +34,32 @@ class ViewController_KVO: UIViewController {
         // Update UI based on changes
     }
 }
+
+/*
+ 2. Closures/Callbacks:
+ In this approach, the ViewModel exposes a closure property that the View sets. Whenever the data changes, the ViewModel invokes this closure, updating the UI.
+ */
+
+//ViewModel
+class UserViewModel_Closure: NSObject {
+    override init() {}
+    var onDataUpdate: ((User) -> Void)?
+    var user: User {
+        didSet {
+            onDataUpdate?(user)
+        }
+    }
+}
+
+//View
+class ViewController_Closure: UIViewController {
+    var viewModel: UserViewModel_Closure!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.onDataUpdate = { [weak self] user in
+            // Update UI based on user data
+        }
+    }
+}
+
