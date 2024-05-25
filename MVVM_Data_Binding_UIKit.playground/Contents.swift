@@ -63,3 +63,37 @@ class ViewController_Closure: UIViewController {
     }
 }
 
+/*
+ 3. Delegation:
+ Delegation is a common way of communicating in iOS development. Here, the ViewModel has a delegate protocol that the View conforms to. When the data changes, the ViewModel notifies the View through delegate methods.
+ */
+
+//ViewModel
+
+protocol UserViewModelDelegate: AnyObject {
+    func userDidChange(newUser: User)
+}
+
+class UserViewModel_Delegate: NSObject {
+    override init() {}
+    weak var delegate: UserViewModelDelegate?
+    var user: User {
+        didSet {
+            delegate?.userDidChange(newUser: user)
+        }
+    }
+}
+
+//View
+class ViewController_Delegate: UIViewController, UserViewModelDelegate {
+    var viewModel: UserViewModel_Delegate!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.delegate = self
+    }
+
+    func userDidChange(newUser: User) {
+        // Update UI based on new user data
+    }
+}
