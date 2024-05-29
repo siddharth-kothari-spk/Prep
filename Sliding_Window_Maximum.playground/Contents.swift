@@ -163,3 +163,38 @@ print(dequeResult) // Output: [3, 3, 4, 5, 5, 5, 6]
  result: [3, 4, 5, 5, 5, 6]
  [3, 4, 5, 5, 5, 6]
  */
+
+
+import Foundation
+
+func maxSlidingWindow(_ nums: [Int], _ k: Int) -> [Int] {
+    var deque = [Int]()
+    var result = [Int]()
+    
+    for i in 0..<nums.count {
+        // Remove elements not within the sliding window
+        if !deque.isEmpty && deque.first! < i - k + 1 {
+            deque.removeFirst()
+        }
+        
+        // Remove elements from the deque that are smaller than the current element
+        while !deque.isEmpty && nums[deque.last!] < nums[i] {
+            deque.removeLast()
+        }
+        
+        // Add the current element's index to the deque
+        deque.append(i)
+        
+        // Once the first window is done, add the maximum to the result list
+        if i >= k - 1 {
+            result.append(nums[deque.first!])
+        }
+    }
+    
+    return result
+}
+
+// Example usage
+let nums = [1, 3, -1, -3, 5, 3, 6, 7]
+let output = maxSlidingWindow(nums, 3)
+print(output)  // Output: [3, 3, 5, 5, 6, 7]
