@@ -91,3 +91,37 @@ print(minKBitFlips(nums2, k2)) // Output: -1
 let nums3 = [0, 0, 0, 1, 0, 1, 1, 0]
 let k3 = 3
 print(minKBitFlips(nums3, k3)) // Output: 3
+
+
+// https://www.youtube.com/watch?v=Y6ZrtZgmwRg&ab_channel=ProgrammingLivewithLarry
+func minKBitFlips2(_ nums: [Int], _ k: Int) -> Int {
+    var nums = nums
+    let n = nums.count
+    var flip = [Int](repeating: 0, count: n)
+    var flips = 0
+    var current = 0
+
+    for (index, value) in nums.enumerated() {
+        if flip[index] != 0 {
+            current ^= 1
+        }
+        
+        if value^current == 0 {
+            flips += 1
+            current ^= 1
+            
+            if index + k > n {
+                return -1
+            }
+            
+            if index + k < n {
+                flip[index + k] = 1
+            }
+        }
+    }
+    
+    return flips
+}
+
+print(minKBitFlips2(nums2, k2))
+print(minKBitFlips2(nums3, k3))
