@@ -147,88 +147,79 @@ let words3 = ["bar", "foo", "the"]
 print(findSubstring(s3, words3))  // Output: [6, 9, 12]
 
 /*
- Sure, let's perform a dry run for the given example:
+ dry run for the given example:
 
- ### Example:
- - **String**: `s2 = "wordgoodgoodgoodbestword"`
- - **Words**: `words2 = ["word", "good", "best", "word"]`
+Example:
+String: s3 = "barfoofoobarthefoobarman"
+Words: words3 = ["bar", "foo", "the"]
+Step-by-Step Dry Run:
+Initialization:
 
- ### Step-by-Step Dry Run:
+wordLength = 3 (since "bar", "foo", and "the" have length 3)
+numWords = 3 (there are 3 words in the list)
+concatLength = 3 * 3 = 9 (length of the concatenated string we need to find)
+wordsCounter = ["bar": 1, "foo": 1, "the": 1] (count of each word in words3)
+Convert s3 to an array of characters: sArray = Array(s3)
+Initialize result = [] (to store starting indices of valid concatenated substrings)
+Sliding Window:
 
- 1. **Initialization**:
-    - `wordLength = 4` (since "word" and other words have length 4)
-    - `numWords = 4` (there are 4 words in the list)
-    - `concatLength = 4 * 4 = 16` (length of the concatenated string we need to find)
-    - `wordsCounter = ["word": 2, "good": 1, "best": 1]` (count of each word in `words2`)
-    - Convert `s2` to an array of characters: `sArray = ["w", "o", "r", "d", "g", "o", "o", "d", "g", "o", "o", "d", "g", "o", "o", "d", "b", "e", "s", "t", "w", "o", "r", "d"]`
-    - Initialize `result = []` (to store starting indices of valid concatenated substrings)
+Iterate over each possible starting index i in s3 from 0 to sArray.count - concatLength which is 0 to 24 - 9 = 15.
+Iteration Details:
+Iteration i = 0:
 
- 2. **Sliding Window**:
-    - Iterate over each possible starting index `i` in `s2` from `0` to `sArray.count - concatLength` which is `0` to `24 - 16 = 8`.
+Initialize seenWords = [:]
+Check substring starting at index 0:
+j = 0: word = "bar" (sArray[0..<3]), seenWords = ["bar": 1]
+j = 1: word = "foo" (sArray[3..<6]), seenWords = ["bar": 1, "foo": 1]
+j = 2: word = "foo" (sArray[6..<9]), seenWords = ["bar": 1, "foo": 2] (Invalid, "foo" count exceeds), break out early.
+Iteration i = 1 to i = 2:
 
- ### Iteration Details:
+For these indices, initial substrings "arf", "rfo" are not valid words, so break out early.
+Iteration i = 3:
 
- - **Iteration i = 0**:
-   - Initialize `seenWords = [:]`
-   - Check substring starting at index `0`:
-     - j = 0: word = "word" (sArray[0..<4]), `seenWords = ["word": 1]`
-     - j = 1: word = "good" (sArray[4..<8]), `seenWords = ["word": 1, "good": 1]`
-     - j = 2: word = "good" (sArray[8..<12]), `seenWords = ["word": 1, "good": 2]` (Invalid, "good" count exceeds)
-     - Break out of loop.
+Initialize seenWords = [:]
+Check substring starting at index 3:
+j = 0: word = "foo" (sArray[3..<6]), seenWords = ["foo": 1]
+j = 1: word = "foo" (sArray[6..<9]), seenWords = ["foo": 2] (Invalid, "foo" count exceeds), break out early.
+Iteration i = 4 to i = 5:
 
- - **Iteration i = 1 to i = 2**:
-   - For these indices, initial substrings "ordg", "rdgo" are not valid words, so break out early.
+For these indices, initial substrings "oofo", "ofoo" are not valid words, so break out early.
+Iteration i = 6:
 
- - **Iteration i = 3 to i = 4**:
-   - For these indices, initial substrings "dgoo", "good" are not valid starting words, so break out early.
+Initialize seenWords = [:]
+Check substring starting at index 6:
+j = 0: word = "foo" (sArray[6..<9]), seenWords = ["foo": 1]
+j = 1: word = "bar" (sArray[9..<12]), seenWords = ["foo": 1, "bar": 1]
+j = 2: word = "the" (sArray[12..<15]), seenWords = ["foo": 1, "bar": 1, "the": 1] (valid)
+Add index 6 to result.
+Iteration i = 7 to i = 8:
 
- - **Iteration i = 5**:
-   - Initialize `seenWords = [:]`
-   - Check substring starting at index `5`:
-     - j = 0: word = "oodg" (sArray[5..<9]), not in `wordsCounter`, break out early.
+For these indices, initial substrings "oob", "oba" are not valid words, so break out early.
+Iteration i = 9:
 
- - **Iteration i = 6**:
-   - Initialize `seenWords = [:]`
-   - Check substring starting at index `6`:
-     - j = 0: word = "odgo" (sArray[6..<10]), not in `wordsCounter`, break out early.
+Initialize seenWords = [:]
+Check substring starting at index 9:
+j = 0: word = "bar" (sArray[9..<12]), seenWords = ["bar": 1]
+j = 1: word = "the" (sArray[12..<15]), seenWords = ["bar": 1, "the": 1]
+j = 2: word = "foo" (sArray[15..<18]), seenWords = ["bar": 1, "the": 1, "foo": 1] (valid)
+Add index 9 to result.
+Iteration i = 10 to i = 11:
 
- - **Iteration i = 7**:
-   - Initialize `seenWords = [:]`
-   - Check substring starting at index `7`:
-     - j = 0: word = "dgoo" (sArray[7..<11]), not in `wordsCounter`, break out early.
+For these indices, initial substrings "art", "rth" are not valid words, so break out early.
+Iteration i = 12:
 
- - **Iteration i = 8**:
-   - Initialize `seenWords = [:]`
-   - Check substring starting at index `8`:
-     - j = 0: word = "good" (sArray[8..<12]), `seenWords = ["good": 1]`
-     - j = 1: word = "good" (sArray[12..<16]), `seenWords = ["good": 2]` (Invalid, "good" count exceeds), break out early.
+Initialize seenWords = [:]
+Check substring starting at index 12:
+j = 0: word = "the" (sArray[12..<15]), seenWords = ["the": 1]
+j = 1: word = "foo" (sArray[15..<18]), seenWords = ["the": 1, "foo": 1]
+j = 2: word = "bar" (sArray[18..<21]), seenWords = ["the": 1, "foo": 1, "bar": 1] (valid)
+Add index 12 to result.
+Iteration i = 13 to i = 15:
 
- - **Iteration i = 9 to i = 10**:
-   - For these indices, initial substrings "oodg", "odgo" are not valid starting words, so break out early.
-
- - **Iteration i = 11**:
-   - Initialize `seenWords = [:]`
-   - Check substring starting at index `11`:
-     - j = 0: word = "good" (sArray[11..<15]), `seenWords = ["good": 1]`
-     - j = 1: word = "good" (sArray[15..<19]), `seenWords = ["good": 2]` (Invalid, "good" count exceeds), break out early.
-
- - **Iteration i = 12 to i = 13**:
-   - For these indices, initial substrings "oodg", "odgo" are not valid starting words, so break out early.
-
- - **Iteration i = 14**:
-   - Initialize `seenWords = [:]`
-   - Check substring starting at index `14`:
-     - j = 0: word = "good" (sArray[14..<18]), `seenWords = ["good": 1]`
-     - j = 1: word = "best" (sArray[18..<22]), `seenWords = ["good": 1, "best": 1]`
-     - j = 2: word = "word" (sArray[22..<26]), `seenWords = ["good": 1, "best": 1, "word": 1]` (valid)
-     - Add index `14` to `result`
-
- 3. **Result**:
-    - The loop completes without finding any valid starting index.
-    - The final `result = []` as no valid concatenated substring is found.
-
- ### Conclusion:
-
- - There are no valid concatenated substrings in `s2` that are formed by a permutation of `words2`.
- - The output is `[]`.
+For these indices, initial substrings "hef", "efo", "foo" do not complete valid concatenations with remaining words.
+Result:
+The final result = [6, 9, 12] as these are the starting indices where valid concatenated substrings are found.
+Conclusion:
+The output is [6, 9, 12] since valid concatenated substrings are found starting at these indices.
  */
+
