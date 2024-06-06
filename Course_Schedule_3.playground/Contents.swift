@@ -61,3 +61,61 @@ print(scheduleCourse([[100,200],[200,1300],[1000,1250],[2000,3200]]))
 print(scheduleCourse([[1,2]]))
 
 print(scheduleCourse([[3,2],[4,3]]))
+
+// Sol2:
+/*
+ we can use a greedy algorithm with a max-heap (priority queue) to efficiently manage the scheduling. Here's a step-by-step breakdown of the approach:
+
+ Sort the Courses: First, sort the courses by their end dates (lastDayi). This ensures that we consider each course in the order of when they must be completed.
+
+ Use a Max-Heap: Use a max-heap (priority queue) to keep track of the durations of the courses that have been taken so far. This helps in efficiently finding the longest duration course to drop when needed.
+
+ Iterate Through Courses: Iterate through the sorted list of courses. For each course:
+
+ If adding the current course's duration to the total days spent so far does not exceed its last possible day, add the course to the heap.
+ If adding the course exceeds its last possible day, check if the current course's duration is less than the longest duration course in the heap. If so, replace the longest duration course with the current one (remove the longest duration course from the heap and add the current one). This replacement ensures that we always have the minimum total duration for the courses taken, maximizing the number of courses that can be taken.
+ Result: The number of courses in the heap at the end of the iteration represents the maximum number of courses that can be taken.
+ */
+
+import Foundation
+
+func scheduleCourse(_ courses: [[Int]]) -> Int {
+    // Step 1: Sort courses by their last possible day
+    let sortedCourses = courses.sorted { $0[1] < $1[1] }
+    
+    var totalDays = 0
+    var maxHeap = [Int]()
+    
+    // Step 3: Iterate through the sorted courses
+    for course in sortedCourses {
+        let duration = course[0]
+        let lastDay = course[1]
+        
+        // Step 4a: Add the course duration to the max-heap and update total days
+        maxHeap.append(duration)
+        totalDays += duration
+        maxHeap.sort(by: >)  // Sorting to maintain max-heap property
+        
+        // Step 4b: Check if the total days exceed the current course's last day
+        if totalDays > lastDay {
+            // If so, remove the course with the longest duration
+            if let maxDuration = maxHeap.first {
+                totalDays -= maxDuration
+                maxHeap.removeFirst()
+            }
+        }
+    }
+    
+    // The number of courses in the max-heap is the answer
+    return maxHeap.count
+}
+
+// Example usage:
+let courses1 = [[100, 200], [200, 1300], [1000, 1250], [2000, 3200]]
+print(scheduleCourse(courses1))  // Output: 3
+
+let courses2 = [[1, 2]]
+print(scheduleCourse(courses2))  // Output: 1
+
+let courses3 = [[3, 2], [4, 3]]
+print(scheduleCourse(courses3))  // Output: 0
