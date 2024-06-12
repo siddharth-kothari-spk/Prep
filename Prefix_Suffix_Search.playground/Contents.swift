@@ -77,3 +77,62 @@ print(wordFilter.f("a", "e"))  // Output: 0
 wordFilter = WordFilter(["aabcdee"])
 print(wordFilter.f("b", "e"))
 
+/*
+ Solution2
+ To efficiently solve this problem using a Trie, we can build a special Trie that contains all possible suffixes and prefixes of the given words. This will allow us to perform fast prefix and suffix lookups. Here's the plan:
+
+ Create a Trie node class.
+ Insert each word into the Trie, but with a twist: for each word, insert all possible suffixes combined with the word.
+ Implement the search function to find the longest prefix-suffix combination.
+ */
+
+class TrieNode {
+    var children: [Character: TrieNode]
+    var weight: Int
+    
+    init() {
+        self.children = [Character: TrieNode]()
+        self.weight = -1
+    }
+}
+
+class WordFilter2 {
+    private let root: TrieNode
+    
+    init(_ words: [String]) {
+        root = TrieNode()
+        
+        for (weight, word) in words.enumerated() {
+            let wordWithSeparator = word + "#" + word
+            for i in 0..<word.count {
+                var currentNode = root
+                currentNode.weight = weight
+                for j in i..<wordWithSeparator.count {
+                    let char = wordWithSeparator[wordWithSeparator.index(wordWithSeparator.startIndex, offsetBy: j)]
+                    if currentNode.children[char] == nil {
+                        currentNode.children[char] = TrieNode()
+                    }
+                    currentNode = currentNode.children[char]!
+                    currentNode.weight = weight
+                }
+            }
+        }
+    }
+    
+    func f(_ pref: String, _ suff: String) -> Int {
+        var currentNode = root
+        let query = suff + "#" + pref
+        
+        for char in query {
+            if let nextNode = currentNode.children[char] {
+                currentNode = nextNode
+            } else {
+                return -1
+            }
+        }
+        return currentNode.weight
+    }
+}
+
+var wordFilter2 = WordFilter2(["aabcdee"])
+print(wordFilter2.f("b", "e"))
