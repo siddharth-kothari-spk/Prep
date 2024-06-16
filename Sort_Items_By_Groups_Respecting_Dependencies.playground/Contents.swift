@@ -126,6 +126,8 @@ func sortItems(_ n: Int, _ m: Int, _ group: [Int], _ beforeItems: [[Int]]) -> [I
                     queue.append(neighbor)
                 }
             }
+            print("updated queue: \(queue)")
+            print("updated sortedOrder: \(sortedOrder)")
         }
         print("sortedOrder: \(sortedOrder)")
         return sortedOrder.count == nodes.count ? sortedOrder : []
