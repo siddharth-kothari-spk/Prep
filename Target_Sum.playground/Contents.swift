@@ -148,3 +148,89 @@ print(findTargetSumWays(nums2, target2))  // Output: 1
 
  Thus, there are 5 ways to assign symbols to the numbers `[1, 1, 1, 1, 1]` to achieve the target sum of 3.
  */
+
+
+/*
+ Certainly! Let's walk through the dry run using the Swift code:
+
+
+
+ ### Dry Run for `nums1 = [1, 1, 1, 1, 1]` and `target1 = 3`
+
+ #### Initialization:
+ - `dp` is initialized with `[0: 1]`.
+
+ #### Iteration 1 (num = 1):
+ - `dp` before processing: `[0: 1]`
+ - Initialize `nextDp` as `[:]`.
+
+ - Process `sum = 0`:
+   - `sumPlus = 0 + 1 = 1`
+   - `sumMinus = 0 - 1 = -1`
+   - Update `nextDp`: `nextDp[1] = nextDp.get(1, 0) + dp[0]` -> `nextDp[1] = 0 + 1 = 1`
+   - Update `nextDp`: `nextDp[-1] = nextDp.get(-1, 0) + dp[0]` -> `nextDp[-1] = 0 + 1 = 1`
+ - `nextDp` now: `[1: 1, -1: 1]`
+ - Update `dp` to `nextDp`: `[1: 1, -1: 1]`
+
+ #### Iteration 2 (num = 1):
+ - `dp` before processing: `[1: 1, -1: 1]`
+ - Initialize `nextDp` as `[:]`.
+
+ - Process `sum = 1`:
+   - `sumPlus = 1 + 1 = 2`
+   - `sumMinus = 1 - 1 = 0`
+   - Update `nextDp`: `nextDp[2] = nextDp.get(2, 0) + dp[1]` -> `nextDp[2] = 0 + 1 = 1`
+   - Update `nextDp`: `nextDp[0] = nextDp.get(0, 0) + dp[1]` -> `nextDp[0] = 0 + 1 = 1`
+ - `nextDp` now: `[2: 1, 0: 1]`
+
+ - Process `sum = -1`:
+   - `sumPlus = -1 + 1 = 0`
+   - `sumMinus = -1 - 1 = -2`
+   - Update `nextDp`: `nextDp[0] = nextDp.get(0, 0) + dp[-1]` -> `nextDp[0] = 1 + 1 = 2`
+   - Update `nextDp`: `nextDp[-2] = nextDp.get(-2, 0) + dp[-1]` -> `nextDp[-2] = 0 + 1 = 1`
+ - `nextDp` now: `[2: 1, 0: 2, -2: 1]`
+ - Update `dp` to `nextDp`: `[2: 1, 0: 2, -2: 1]`
+
+ #### Iteration 3 (num = 1):
+ - `dp` before processing: `[2: 1, 0: 2, -2: 1]`
+ - Initialize `nextDp` as `[:]`.
+
+ - Process `sum = 2`:
+   - `sumPlus = 2 + 1 = 3`
+   - `sumMinus = 2 - 1 = 1`
+   - Update `nextDp`: `nextDp[3] = nextDp.get(3, 0) + dp[2]` -> `nextDp[3] = 0 + 1 = 1`
+   - Update `nextDp`: `nextDp[1] = nextDp.get(1, 0) + dp[2]` -> `nextDp[1] = 0 + 1 = 1`
+ - `nextDp` now: `[3: 1, 1: 1]`
+
+ - Process `sum = 0`:
+   - `sumPlus = 0 + 1 = 1`
+   - `sumMinus = 0 - 1 = -1`
+   - Update `nextDp`: `nextDp[1] = nextDp.get(1, 0) + dp[0]` -> `nextDp[1] = 1 + 2 = 3`
+   - Update `nextDp`: `nextDp[-1] = nextDp.get(-1, 0) + dp[0]` -> `nextDp[-1] = 0 + 2 = 2`
+ - `nextDp` now: `[3: 1, 1: 3, -1: 2]`
+
+ - Process `sum = -2`:
+   - `sumPlus = -2 + 1 = -1`
+   - `sumMinus = -2 - 1 = -3`
+   - Update `nextDp`: `nextDp[-1] = nextDp.get(-1, 0) + dp[-2]` -> `nextDp[-1] = 2 + 1 = 3`
+   - Update `nextDp`: `nextDp[-3] = nextDp.get(-3, 0) + dp[-2]` -> `nextDp[-3] = 0 + 1 = 1`
+ - `nextDp` now: `[3: 1, 1: 3, -1: 3, -3: 1]`
+ - Update `dp` to `nextDp`: `[3: 1, 1: 3, -1: 3, -3: 1]`
+
+ ### Detailed Explanation:
+ - When processing `sum = 2`:
+   - `sumPlus = 3`, so `nextDp[3]` becomes `1`.
+   - `sumMinus = 1`, so `nextDp[1]` becomes `1`.
+
+ - When processing `sum = 0`:
+   - `sumPlus = 1`, so `nextDp[1]` is updated from `1` to `3` because there are two ways to reach `0` from previous steps.
+   - `sumMinus = -1`, so `nextDp[-1]` becomes `2`.
+
+ - When processing `sum = -2`:
+   - `sumPlus = -1`, so `nextDp[-1]` is updated from `2` to `3` because there is one way to reach `-2` from previous steps.
+   - `sumMinus = -3`, so `nextDp[-3]` becomes `1`.
+
+ By the end of the third iteration, the values for `nextDp` correctly reflect all possible ways to sum up to each key using three `1`s. This process continues for all elements in `nums`.
+
+ Finally, the number of ways to get the target sum `3` is found in `dp[3]`, which is `5`.
+ */
