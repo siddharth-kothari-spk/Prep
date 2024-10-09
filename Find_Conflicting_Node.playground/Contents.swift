@@ -12,9 +12,9 @@ import UIKit
      Now, traverse both lists simultaneously, one node at a time. The first common node is the intersection point (conflicting node).
  */
 
-class ListNode1 {
+class ListNode {
     var val: Int
-    var next: ListNode1?
+    var next: ListNode?
 
     init(_ val: Int) {
         self.val = val
@@ -22,7 +22,7 @@ class ListNode1 {
     }
 }
 
-func getLength(_ head: ListNode1?) -> Int {
+func getLength(_ head: ListNode?) -> Int {
     var length = 0
     var current = head
     while current != nil {
@@ -32,7 +32,7 @@ func getLength(_ head: ListNode1?) -> Int {
     return length
 }
 
-func getIntersectionNode(_ headA: ListNode1?, _ headB: ListNode1?) -> ListNode1? {
+func getIntersectionNode(_ headA: ListNode?, _ headB: ListNode?) -> ListNode? {
     // Get the lengths of both lists
     let lenA = getLength(headA)
     let lenB = getLength(headB)
@@ -65,17 +65,51 @@ func getIntersectionNode(_ headA: ListNode1?, _ headB: ListNode1?) -> ListNode1?
     return nil
 }
 
-var node1 = ListNode1(1)
-node1.next = ListNode1(2)
-node1.next?.next = ListNode1(3)
-node1.next?.next?.next = ListNode1(4)
-node1.next?.next?.next?.next = ListNode1(5)
-node1.next?.next?.next?.next?.next = ListNode1(6)
+var node1 = ListNode(1)
+node1.next = ListNode(2)
+node1.next?.next = ListNode(3)
+node1.next?.next?.next = ListNode(4)
+node1.next?.next?.next?.next = ListNode(5)
+node1.next?.next?.next?.next?.next = ListNode(6)
 
-var node2 = ListNode1(10)
-node2.next = ListNode1(11)
-node2.next?.next = ListNode1(12)
+var node2 = ListNode(10)
+node2.next = ListNode(11)
+node2.next?.next = ListNode(12)
 node2.next?.next?.next = node1.next?.next?.next
 
 print(getIntersectionNode(node1, node2)?.val)
 
+
+// Approach 2:
+/*
+ 2. Second Approach (Using Two Pointers):
+
+     Two pointers traverse both linked lists.
+     When a pointer reaches the end of its list, it starts traversing the other list.
+     This ensures that both pointers traverse an equal number of nodes, and if they intersect, they will eventually meet at the intersection point.
+ */
+
+
+func getIntersectionNode2(_ headA: ListNode?, _ headB: ListNode?) -> ListNode? {
+    // If either list is empty, return nil
+    if headA == nil || headB == nil {
+        return nil
+    }
+
+    var pointerA = headA
+    var pointerB = headB
+
+    // Traverse both lists
+    while pointerA !== pointerB {
+        // If pointerA reaches the end, move it to the head of List B, else move to next
+        pointerA = (pointerA == nil) ? headB : pointerA?.next
+
+        // If pointerB reaches the end, move it to the head of List A, else move to next
+        pointerB = (pointerB == nil) ? headA : pointerB?.next
+    }
+
+    // Both pointers will meet at the intersection point, or at nil if no intersection
+    return pointerA
+}
+
+print(getIntersectionNode2(node1, node2)?.val)
